@@ -1,0 +1,1873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uniscope , See Your Options, Anywhere in the World</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Outfit:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#06080f;--s:#0d1117;--s2:#151b24;--s3:#1c2430;--bd:rgba(255,255,255,0.08);--bd2:rgba(255,255,255,0.14);--tx:#eef0f4;--mt:#7a8494;--mt2:#a0aab8;--ac:#00d4aa;--ac2:#00b894;--acg:rgba(0,212,170,0.14);--go:#f5c842;--bl:#4da6ff;--tne:#a78bfa;--tnedim:rgba(167,139,250,0.12);--sg:#00d4aa;--sa:#ffb84d;--sr:#ff6b6b;--r:14px;--rs:8px;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--tx);min-height:100vh;overflow-x:hidden;}
+.topnav{position:sticky;top:0;z-index:100;background:rgba(6,8,15,0.96);backdrop-filter:blur(14px);border-bottom:1px solid var(--bd2);display:flex;align-items:center;justify-content:space-between;padding:11px 32px;}
+.logo{display:flex;align-items:center;gap:9px;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;cursor:pointer;}
+.logo-mark{width:29px;height:29px;border-radius:7px;background:linear-gradient(135deg,var(--ac),var(--bl));display:flex;align-items:center;justify-content:center;font-size:13px;}
+.logo span{color:var(--ac);}
+.nav-links{display:flex;gap:1px;}
+.nl{padding:6px 10px;border-radius:7px;font-size:12px;font-weight:500;cursor:pointer;color:var(--mt2);border:none;background:transparent;font-family:'Outfit',sans-serif;transition:all 0.2s;}
+.nl:hover{color:var(--tx);background:var(--s2);}
+.nl.active{color:var(--ac);background:var(--acg);}
+.nav-dropdown{position:relative;display:inline-block;}
+.nav-drop-menu{position:absolute;top:calc(100% + 4px);left:0;background:var(--s2);border:1px solid var(--bd2);border-radius:10px;min-width:180px;padding:6px;z-index:200;display:none;box-shadow:0 8px 32px rgba(0,0,0,0.4);}
+.nav-dropdown:hover .nav-drop-menu{display:block;}
+.nav-drop-menu button{display:block;width:100%;text-align:left;padding:8px 12px;background:none;border:none;color:var(--mt2);font-size:13px;font-family:"Outfit",sans-serif;cursor:pointer;border-radius:7px;transition:all 0.15s;}
+.nav-drop-menu button:hover{background:var(--s3);color:var(--ac);}
+.page{display:none;}.page.active{display:block;}
+/* HERO */
+.hbg{position:relative;overflow:hidden;}
+.hbg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 20% 0%,rgba(0,212,170,0.09),transparent 60%),radial-gradient(ellipse 60% 50% at 80% 100%,rgba(77,166,255,0.07),transparent 55%);}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.025) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,black 20%,transparent 80%);}
+.hc{position:relative;z-index:5;display:flex;flex-direction:column;align-items:center;text-align:center;padding:40px 20px 32px;}
+.hbadge{display:inline-flex;align-items:center;gap:6px;background:var(--acg);border:1px solid rgba(0,212,170,0.3);border-radius:20px;padding:5px 14px;font-size:11px;font-weight:600;letter-spacing:0.1em;color:var(--ac);text-transform:uppercase;margin-bottom:16px;}
+.htitle{font-family:'Syne',sans-serif;font-size:clamp(30px,4.5vw,58px);font-weight:800;line-height:1.06;letter-spacing:-0.02em;margin-bottom:12px;}
+.htitle .grad{background:linear-gradient(90deg,var(--ac),var(--bl));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.hsub{font-size:15px;color:var(--mt2);line-height:1.65;max-width:480px;margin-bottom:28px;font-weight:300;}
+/* QUICK FILTERS */
+.quick-filters{display:flex;gap:7px;margin-bottom:16px;flex-wrap:wrap;justify-content:center;align-items:center;}
+.qf-label{font-size:11px;color:var(--mt);font-weight:600;font-family:'JetBrains Mono',monospace;white-space:nowrap;}
+.qfbtn{padding:7px 13px;border-radius:20px;font-size:12px;font-weight:700;cursor:pointer;border:1px solid var(--bd2);background:var(--s2);color:var(--mt2);font-family:'Syne',sans-serif;transition:all 0.2s;display:flex;align-items:center;gap:5px;}
+.qfbtn:hover{border-color:var(--ac);color:var(--tx);}
+.qfbtn.active{background:var(--ac);color:#06080f;border-color:var(--ac);}
+.qfbtn.tne-q.active{background:var(--tne);color:#06080f;border-color:var(--tne);}
+/* SEARCH BOX */
+.sbox{width:100%;max-width:940px;background:var(--s);border:1px solid var(--bd2);border-radius:18px;padding:20px 22px;box-shadow:0 28px 70px rgba(0,0,0,0.5);margin-bottom:16px;}
+/* MODE TOGGLE , prominent cards */
+.mode-label{font-size:10px;font-weight:600;color:var(--mt);text-transform:uppercase;letter-spacing:0.1em;font-family:'JetBrains Mono',monospace;margin-bottom:8px;}
+.mode-cards{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:14px;}
+.mode-card{padding:13px 16px;border-radius:11px;cursor:pointer;border:2px solid var(--bd2);background:var(--s2);transition:all 0.2s;text-align:left;display:flex;align-items:flex-start;gap:11px;}
+.mode-card:hover{border-color:rgba(0,212,170,0.4);}
+.mode-card.active{border-color:var(--ac);background:rgba(0,212,170,0.06);}
+.mc-icon{font-size:22px;flex-shrink:0;margin-top:1px;}
+.mc-text{}
+.mc-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--tx);margin-bottom:3px;}
+.mode-card.active .mc-title{color:var(--ac);}
+.mc-desc{font-size:11px;color:var(--mt);line-height:1.45;}
+/* GRADES PANEL */
+.grades-panel{background:rgba(0,212,170,0.04);border:1px solid rgba(0,212,170,0.2);border-radius:11px;padding:14px 16px;margin-bottom:12px;display:none;}
+.grades-panel.vis{display:block;}
+.gptitle{font-size:10px;font-weight:600;color:var(--ac);text-transform:uppercase;letter-spacing:0.1em;font-family:'JetBrains Mono',monospace;margin-bottom:10px;}
+.grow{display:flex;gap:10px;flex-wrap:wrap;align-items:flex-end;}
+.gf{display:flex;flex-direction:column;gap:4px;}
+.gf label{font-size:10px;color:var(--mt);text-transform:uppercase;letter-spacing:0.07em;}
+.gf select,.gf input{padding:7px 10px;background:var(--s3);border:1px solid var(--bd);border-radius:6px;color:var(--tx);font-size:12px;font-family:'Outfit',sans-serif;outline:none;appearance:none;width:130px;}
+.ghint{font-size:11px;color:var(--mt);font-style:italic;align-self:center;line-height:1.45;max-width:200px;}
+.elig-key{display:flex;gap:12px;margin-top:9px;flex-wrap:wrap;}
+.ek{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--mt2);background:var(--s3);padding:3px 9px;border-radius:20px;border:1px solid var(--bd);}
+/* FILTER ROWS */
+.sdiv{display:flex;align-items:center;gap:8px;margin:10px 0;}
+.sdiv span{font-size:10px;color:var(--mt);text-transform:uppercase;letter-spacing:0.1em;white-space:nowrap;font-family:'JetBrains Mono',monospace;}
+.sdiv::before,.sdiv::after{content:'';flex:1;height:1px;background:var(--bd);}
+.sr4{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:9px;}
+.sr4b{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:9px;}
+.sr3a{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:9px;align-items:flex-end;}
+.sf{display:flex;flex-direction:column;gap:4px;}
+.fl{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--mt);font-family:'JetBrains Mono',monospace;}
+.fsel,.finp{width:100%;padding:8px 11px;background:var(--s2);border:1px solid var(--bd);border-radius:var(--rs);color:var(--tx);font-size:12px;font-family:'Outfit',sans-serif;outline:none;cursor:pointer;appearance:none;transition:border-color 0.2s;}
+.fsel:focus,.finp:focus{border-color:var(--ac);}
+.fsel option{background:var(--s2);}
+.sbtn{padding:9px 22px;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:var(--rs);color:#06080f;font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:all 0.2s;white-space:nowrap;}
+.sbtn:hover{transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,212,170,0.3);}
+.hstats{display:flex;gap:24px;color:var(--mt);font-size:12px;}
+.hstat strong{color:var(--ac);font-family:'Syne',sans-serif;font-size:14px;display:block;}
+/* RESULTS */
+.rsec{display:none;max-width:1340px;margin:0 auto;padding:0 28px 60px;}
+.rsec.vis{display:block;}
+.rhdr{display:flex;align-items:center;justify-content:space-between;padding:22px 0 15px;border-bottom:1px solid var(--bd);margin-bottom:16px;flex-wrap:wrap;gap:10px;}
+.rtitle{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;}
+.rmeta{font-size:12px;color:var(--mt);margin-top:2px;}
+.rctrl{display:flex;gap:7px;}
+.ssel{padding:6px 10px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--tx);font-size:12px;font-family:'Outfit',sans-serif;outline:none;appearance:none;cursor:pointer;}
+.ebtn{padding:6px 12px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--mt2);font-size:12px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;}
+.ebtn:hover{border-color:var(--ac);color:var(--ac);}
+.eligbanner{background:linear-gradient(135deg,rgba(0,212,170,0.06),rgba(77,166,255,0.04));border:1px solid rgba(0,212,170,0.2);border-radius:10px;padding:10px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px;font-size:12px;}
+.etxt{color:var(--mt2);}.etxt strong{color:var(--ac);}
+.clist{display:flex;flex-direction:column;gap:12px;}
+/* CARD */
+.pc{background:var(--s);border:1px solid var(--bd2);border-radius:var(--r);overflow:hidden;transition:all 0.2s;cursor:pointer;}
+.pc:hover{border-color:rgba(0,212,170,0.3);box-shadow:0 6px 32px rgba(0,0,0,0.35);}
+.pc.tne{border-color:rgba(167,139,250,0.2);}
+.pc.tne:hover{border-color:rgba(167,139,250,0.4);}
+.pc.inel{opacity:0.35;}
+.phdr{display:flex;align-items:flex-start;gap:13px;padding:15px 17px 11px;}
+.plogo{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;flex-shrink:0;}
+.pmain{flex:1;min-width:0;}
+.ptop{display:flex;align-items:flex-start;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+.puni{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;line-height:1.2;}
+.pprog{font-size:12px;color:var(--mt2);margin-top:2px;}
+.pbadges{display:flex;gap:4px;flex-wrap:wrap;margin-left:auto;flex-shrink:0;}
+.b{display:inline-flex;align-items:center;gap:3px;padding:2px 7px;border-radius:20px;font-size:10px;font-weight:600;white-space:nowrap;}
+.bl2{background:rgba(77,166,255,0.12);color:var(--bl);border:1px solid rgba(77,166,255,0.2);}
+.bgo{background:rgba(245,200,66,0.1);color:var(--go);border:1px solid rgba(245,200,66,0.2);}
+.bt2{background:var(--tnedim);color:var(--tne);border:1px solid rgba(167,139,250,0.25);}
+.bh2{background:rgba(0,212,170,0.08);color:var(--ac);border:1px solid rgba(0,212,170,0.2);}
+.bon{background:rgba(77,166,255,0.1);color:var(--bl);border:1px solid rgba(77,166,255,0.2);}
+.bem{background:rgba(0,212,170,0.1);color:var(--ac);border:1px solid rgba(0,212,170,0.25);}
+.bec{background:rgba(255,184,77,0.1);color:var(--sa);border:1px solid rgba(255,184,77,0.25);}
+.ben2{background:rgba(255,107,107,0.1);color:var(--sr);border:1px solid rgba(255,107,107,0.2);}
+.ploc{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--mt);margin-top:3px;}
+/* card body: 5 cols, safety compact */
+.pbody{display:grid;grid-template-columns:1.1fr 0.9fr 0.9fr 1fr 1.1fr;border-top:1px solid var(--bd);}
+.cs{padding:12px 14px;border-right:1px solid var(--bd);}
+.cs:last-child{border-right:none;}
+.csl{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--mt);margin-bottom:7px;font-family:'JetBrains Mono',monospace;}
+.ctot{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:1px;}
+.ctot span{font-size:10px;font-weight:400;color:var(--mt);}
+.cmur{font-size:10px;color:var(--mt);margin-bottom:6px;}
+.clines{display:flex;flex-direction:column;gap:3px;}
+.cl{display:flex;justify-content:space-between;font-size:10px;}
+.cll{color:var(--mt);}
+.clv{color:var(--mt2);font-family:'JetBrains Mono',monospace;}
+/* safety compact */
+.saf-compact{display:flex;flex-direction:column;gap:5px;}
+.saf-pill-sm{display:inline-flex;align-items:center;gap:5px;padding:3px 8px;border-radius:20px;font-size:10px;font-weight:600;margin-bottom:5px;width:fit-content;}
+.spg{background:rgba(0,212,170,0.1);color:var(--sg);border:1px solid rgba(0,212,170,0.25);}
+.spa{background:rgba(255,184,77,0.1);color:var(--sa);border:1px solid rgba(255,184,77,0.25);}
+.spr{background:rgba(255,107,107,0.1);color:var(--sr);border:1px solid rgba(255,107,107,0.2);}
+.sdot2{width:5px;height:5px;border-radius:50%;}
+.spg .sdot2{background:var(--sg);}.spa .sdot2{background:var(--sa);}.spr .sdot2{background:var(--sr);}
+.saf-mini{display:flex;justify-content:space-between;font-size:10px;}
+.saf-mini-l{color:var(--mt);}
+.saf-mini-v{color:var(--mt2);font-family:'JetBrains Mono',monospace;}
+/* ranking */
+.rnum{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--go);margin-bottom:1px;}
+.rsub{font-size:10px;color:var(--mt);margin-bottom:5px;}
+.rrows{display:flex;flex-direction:column;gap:3px;}
+.rr2{display:flex;justify-content:space-between;font-size:10px;}
+.rrl{color:var(--mt);}
+.rrv{color:var(--go);font-family:'JetBrains Mono',monospace;}
+/* flight */
+.fri{font-size:10px;color:var(--mt2);line-height:1.4;padding:4px 7px;background:var(--s2);border-radius:5px;border:1px solid var(--bd);margin-bottom:4px;}
+.fri strong{color:var(--tx);display:block;font-size:9px;margin-bottom:1px;}
+.fri span{color:var(--ac);font-weight:600;}
+.noflt{font-size:10px;color:var(--mt);font-style:italic;}
+/* entry reqs */
+.errows{display:flex;flex-direction:column;gap:4px;}
+.errw{display:flex;align-items:center;justify-content:space-between;gap:4px;}
+.erl{font-size:10px;color:var(--mt);flex-shrink:0;min-width:44px;}
+.erv{font-size:10px;font-family:'JetBrains Mono',monospace;color:var(--mt2);flex:1;}
+.erc{display:inline-flex;align-items:center;padding:1px 5px;border-radius:9px;font-size:9px;font-weight:700;flex-shrink:0;}
+.ecm{background:rgba(0,212,170,0.1);color:var(--ac);}
+.ecc{background:rgba(255,184,77,0.1);color:var(--sa);}
+.ecn{background:rgba(255,107,107,0.1);color:var(--sr);}
+.ecna{background:rgba(255,255,255,0.05);color:var(--mt);}
+.ptag{display:inline-flex;align-items:center;gap:3px;margin-top:6px;padding:2px 7px;border-radius:6px;background:rgba(77,166,255,0.07);border:1px solid rgba(77,166,255,0.18);font-size:9px;color:var(--bl);}
+.pftr{display:flex;align-items:center;justify-content:space-between;padding:9px 17px;background:var(--s2);border-top:1px solid var(--bd);flex-wrap:wrap;gap:7px;}
+.pfnote{font-size:11px;color:var(--mt);max-width:60%;}
+.pfact{display:flex;gap:6px;}
+.cbtn{padding:5px 12px;border-radius:6px;font-size:11px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;border:none;transition:all 0.2s;}
+.cbt-p{background:var(--ac);color:#06080f;}.cbt-p:hover{background:var(--ac2);}
+.cbt-s{background:var(--s3);color:var(--mt2);border:1px solid var(--bd2);}.cbt-s:hover{border-color:var(--ac);color:var(--ac);}
+.cbt-t{background:var(--tnedim);color:var(--tne);border:1px solid rgba(167,139,250,0.25);}
+.empty{text-align:center;padding:60px 20px;color:var(--mt);}
+.emicon{font-size:40px;margin-bottom:12px;}
+.emtitle{font-family:'Syne',sans-serif;font-size:18px;color:var(--tx);margin-bottom:6px;}
+/* CONTENT PAGES */
+.cp{max-width:900px;margin:0 auto;padding:44px 32px 60px;}
+.cpey{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:0.12em;margin-bottom:10px;}
+.cptitle{font-family:'Syne',sans-serif;font-size:clamp(26px,4vw,44px);font-weight:800;line-height:1.1;letter-spacing:-0.02em;margin-bottom:13px;}
+.cptitle .grad{background:linear-gradient(90deg,var(--ac),var(--bl));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
+.cplead{font-size:15px;color:var(--mt2);line-height:1.7;margin-bottom:32px;font-weight:300;}
+.cpsec{margin-bottom:36px;}
+.cpst{font-family:'Syne',sans-serif;font-size:19px;font-weight:700;margin-bottom:11px;}
+.cpb{font-size:14px;color:var(--mt2);line-height:1.75;margin-bottom:11px;}
+.cpb strong{color:var(--tx);}
+.infobox{background:var(--s2);border:1px solid rgba(0,212,170,0.2);border-radius:10px;padding:14px 18px;margin:14px 0;font-size:13px;color:var(--mt2);line-height:1.6;}
+.infobox strong{color:var(--ac);}
+.tgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:13px;}
+.tcard{background:var(--s);border:1px solid var(--bd2);border-radius:11px;padding:16px 18px;}
+.tcard-icon{font-size:20px;margin-bottom:7px;}
+.tcard-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;margin-bottom:5px;color:var(--tne);}
+.tcard-body{font-size:12px;color:var(--mt2);line-height:1.6;}
+.tcard-ex{font-size:11px;color:var(--mt);margin-top:5px;font-style:italic;}
+.qgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:13px;}
+.qcard{background:var(--s);border:1px solid var(--bd2);border-radius:10px;padding:14px 16px;}
+.qcard-icon{font-size:17px;margin-bottom:6px;}
+.qcard-title{font-family:'Syne',sans-serif;font-size:12px;font-weight:700;color:var(--ac);margin-bottom:4px;}
+.qcard-body{font-size:11px;color:var(--mt2);line-height:1.55;}
+/* ARTICULATION */
+.art-card{background:var(--s);border:1px solid var(--bd2);border-radius:var(--r);overflow:hidden;margin-bottom:14px;transition:all 0.2s;}
+.art-card:hover{border-color:rgba(0,212,170,0.3);}
+.art-hdr{display:grid;grid-template-columns:1fr auto 1fr;gap:0;align-items:center;padding:16px 20px;background:var(--s2);}
+.art-uni{display:flex;flex-direction:column;}
+.art-uni-name{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;}
+.art-uni-loc{font-size:11px;color:var(--mt);margin-top:2px;}
+.art-uni-type{font-size:10px;color:var(--ac);font-weight:600;margin-top:3px;}
+.art-arrow{text-align:center;font-size:22px;color:var(--ac);padding:0 12px;}
+.art-award{text-align:center;margin:0 12px;}
+.art-award-pill{display:inline-flex;align-items:center;gap:5px;padding:4px 12px;border-radius:20px;font-size:11px;font-weight:600;}
+.award-both{background:rgba(0,212,170,0.1);color:var(--ac);border:1px solid rgba(0,212,170,0.25);}
+.award-foreign{background:rgba(77,166,255,0.1);color:var(--bl);border:1px solid rgba(77,166,255,0.2);}
+.art-body{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;border-top:1px solid var(--bd);}
+.art-cell{padding:12px 16px;border-right:1px solid var(--bd);}
+.art-cell:last-child{border-right:none;}
+.art-cell-label{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--mt);margin-bottom:6px;font-family:'JetBrains Mono',monospace;}
+.art-cell-val{font-size:13px;font-weight:600;color:var(--tx);}
+.art-cell-sub{font-size:10px;color:var(--mt);margin-top:2px;}
+.art-cost-row{display:flex;flex-direction:column;gap:3px;}
+.art-cost-item{display:flex;justify-content:space-between;font-size:11px;}
+.art-cost-l{color:var(--mt);}
+.art-cost-v{color:var(--mt2);font-family:'JetBrains Mono',monospace;}
+.art-cost-total{display:flex;justify-content:space-between;font-size:12px;margin-top:4px;padding-top:4px;border-top:1px solid var(--bd);}
+.art-cost-tl{color:var(--ac);font-weight:600;}
+.art-cost-tv{color:var(--ac);font-family:'JetBrains Mono',monospace;font-weight:600;}
+.art-prog{font-size:11px;color:var(--mt2);display:flex;align-items:center;gap:5px;margin-bottom:4px;}
+.art-prog::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--ac);flex-shrink:0;}
+.art-filter-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap;align-items:center;}
+.art-filter-btn{padding:6px 14px;border-radius:20px;font-size:12px;font-weight:600;cursor:pointer;border:1px solid var(--bd2);background:var(--s2);color:var(--mt2);font-family:'Outfit',sans-serif;transition:all 0.2s;}
+.art-filter-btn:hover{border-color:var(--ac);color:var(--ac);}
+.art-filter-btn.active{background:var(--ac);color:#06080f;border-color:var(--ac);}
+.art-years{display:flex;gap:4px;flex-wrap:wrap;}
+.art-year-tag{padding:2px 7px;border-radius:10px;font-size:10px;font-weight:600;background:rgba(77,166,255,0.1);color:var(--bl);border:1px solid rgba(77,166,255,0.2);}
+/* IN FOCUS */
+.focus-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:16px;}
+.focus-card{background:var(--s);border:1px solid var(--bd2);border-radius:var(--r);overflow:hidden;transition:all 0.2s;}
+.focus-card:hover{border-color:rgba(167,139,250,0.4);box-shadow:0 8px 32px rgba(0,0,0,0.3);}
+.focus-card-top{padding:20px 22px 14px;background:linear-gradient(135deg,var(--s2),var(--s3));}
+.fc-badges{display:flex;gap:6px;margin-bottom:11px;}
+.fc-uni{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;margin-bottom:3px;}
+.fc-sub{font-size:13px;color:var(--tne);font-weight:600;}
+.fc-loc{font-size:11px;color:var(--mt);margin-top:3px;}
+.focus-card-body{padding:15px 22px;}
+.fc-stat-row{display:grid;grid-template-columns:1fr 1fr 1fr;gap:9px;margin-bottom:13px;}
+.fc-stat{background:var(--s2);border-radius:8px;padding:9px 11px;border:1px solid var(--bd);}
+.fc-stat-label{font-size:10px;color:var(--mt);margin-bottom:3px;}
+.fc-stat-val{font-size:14px;font-weight:700;font-family:'Syne',sans-serif;color:var(--tx);}
+.fc-stat-val.gold{color:var(--go);}
+.fc-stat-val.green{color:var(--ac);}
+.fc-desc{font-size:13px;color:var(--mt2);line-height:1.65;margin-bottom:13px;}
+.fc-progs{display:flex;flex-direction:column;gap:5px;margin-bottom:13px;}
+.fc-prog{display:flex;align-items:center;justify-content:space-between;padding:7px 10px;background:var(--s2);border-radius:7px;font-size:12px;border:1px solid var(--bd);}
+.fc-prog-name{color:var(--tx);font-weight:500;}
+.fc-prog-fee{color:var(--ac);font-family:'JetBrains Mono',monospace;font-size:11px;}
+.fc-actions{display:flex;gap:8px;}
+/* ABOUT */
+.about-hero{background:linear-gradient(135deg,var(--s),var(--s2));border:1px solid var(--bd2);border-radius:var(--r);padding:28px;margin-bottom:24px;display:flex;gap:24px;align-items:flex-start;}
+.about-avatar{width:76px;height:76px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--bl));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#06080f;flex-shrink:0;}
+.about-name{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;margin-bottom:4px;}
+.about-title{font-size:13px;color:var(--ac);font-weight:600;margin-bottom:8px;}
+.about-tags{display:flex;gap:6px;flex-wrap:wrap;}
+.about-tag{padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--s3);border:1px solid var(--bd2);color:var(--mt2);}
+.about-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:11px;margin-bottom:24px;}
+.about-stat{background:var(--s);border:1px solid var(--bd2);border-radius:11px;padding:16px;text-align:center;}
+.about-stat-num{font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:var(--ac);margin-bottom:4px;}
+.about-stat-label{font-size:11px;color:var(--mt);}
+.mission-box{background:linear-gradient(135deg,rgba(0,212,170,0.06),rgba(77,166,255,0.04));border:1px solid rgba(0,212,170,0.2);border-radius:var(--r);padding:22px 26px;margin-bottom:22px;}
+.mission-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;color:var(--ac);margin-bottom:9px;}
+.mission-body{font-size:14px;color:var(--mt2);line-height:1.75;}
+.mission-body strong{color:var(--tx);}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:24px;}
+.contact-card{background:var(--s);border:1px solid var(--bd2);border-radius:var(--r);padding:20px;transition:border-color 0.2s;cursor:pointer;}
+.contact-card:hover{border-color:var(--ac);}
+.contact-card.active-card{border-color:var(--ac);background:rgba(0,212,170,0.03);}
+.cc-icon{font-size:24px;margin-bottom:9px;}
+.cc-title{font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:5px;}
+.cc-desc{font-size:12px;color:var(--mt2);line-height:1.6;}
+.contact-form{background:var(--s);border:1px solid var(--bd2);border-radius:var(--r);padding:26px;display:none;}
+.contact-form.vis{display:block;}
+.form-title{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:16px;}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px;}
+.form-field{display:flex;flex-direction:column;gap:5px;}
+.form-field.full{grid-column:1/-1;}
+.form-field label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:var(--mt);font-family:'JetBrains Mono',monospace;}
+.form-field input,.form-field textarea,.form-field select{padding:9px 12px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--tx);font-size:13px;font-family:'Outfit',sans-serif;outline:none;transition:border-color 0.2s;resize:vertical;}
+.form-field input:focus,.form-field textarea:focus,.form-field select:focus{border-color:var(--ac);}
+.form-field textarea{min-height:90px;}
+.form-submit{width:100%;padding:11px;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:var(--rs);color:#06080f;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;margin-top:4px;transition:all 0.2s;}
+.form-submit:hover{box-shadow:0 6px 20px rgba(0,212,170,0.3);}
+.contact-info{background:var(--s2);border:1px solid var(--bd2);border-radius:11px;padding:16px 18px;margin-top:14px;font-size:13px;color:var(--mt2);line-height:1.7;}
+.contact-info strong{color:var(--ac);}
+/* DATA */
+.dsgrid{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-top:13px;}
+.dscard{background:var(--s);border:1px solid var(--bd2);border-radius:11px;padding:15px 17px;}
+.dstop{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;}
+.dssrc{font-family:'Syne',sans-serif;font-size:13px;font-weight:700;}
+.fresh{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;border-radius:20px;font-size:10px;font-weight:600;}
+.flive{background:rgba(0,212,170,0.1);color:var(--sg);border:1px solid rgba(0,212,170,0.25);}
+.fann{background:rgba(245,200,66,0.1);color:var(--go);border:1px solid rgba(245,200,66,0.25);}
+.fman{background:rgba(255,184,77,0.1);color:var(--sa);border:1px solid rgba(255,184,77,0.25);}
+.dsbody{font-size:12px;color:var(--mt2);line-height:1.6;}
+.dsbody a{color:var(--bl);}
+.disclbox{background:rgba(255,107,107,0.05);border:1px solid rgba(255,107,107,0.2);border-radius:10px;padding:16px 20px;margin-top:22px;font-size:12px;color:var(--mt2);line-height:1.7;}
+.disclbox strong{color:var(--sr);}
+/* MODAL */
+.movl{position:fixed;inset:0;z-index:200;background:rgba(0,0,0,0.75);display:flex;align-items:center;justify-content:center;opacity:0;pointer-events:none;transition:opacity 0.2s;backdrop-filter:blur(4px);}
+.movl.open{opacity:1;pointer-events:all;}
+.modal{background:var(--s);border:1px solid var(--bd2);border-radius:18px;width:680px;max-width:95vw;max-height:88vh;overflow-y:auto;padding:28px;transform:translateY(16px);transition:transform 0.2s;}
+.movl.open .modal{transform:translateY(0);}
+.mhdr{display:flex;align-items:flex-start;gap:12px;margin-bottom:20px;}
+.mlogo{width:44px;height:44px;border-radius:9px;display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:18px;font-weight:800;flex-shrink:0;}
+.mtitle{font-family:'Syne',sans-serif;font-size:17px;font-weight:700;margin-bottom:3px;}
+.msub{font-size:12px;color:var(--mt);}
+.mclose{margin-left:auto;background:none;border:none;color:var(--mt);cursor:pointer;font-size:19px;width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background 0.2s;}
+.mclose:hover{background:var(--s2);}
+.ms{margin-bottom:18px;}
+.mst{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:0.12em;color:var(--mt);margin-bottom:9px;font-family:'JetBrains Mono',monospace;padding-bottom:6px;border-bottom:1px solid var(--bd);}
+.mg{display:grid;grid-template-columns:1fr 1fr;gap:7px;}
+.mi{background:var(--s2);border-radius:8px;padding:11px 13px;border:1px solid var(--bd);}
+.mifull{grid-column:1/-1;}
+.mihi{background:rgba(0,212,170,0.05);border-color:rgba(0,212,170,0.2);}
+.mil{font-size:10px;color:var(--mt);margin-bottom:3px;}
+.miv{font-size:13px;font-weight:600;color:var(--tx);}
+.mihi .miv{color:var(--ac);font-size:16px;}
+/* COMPARISON TRAY */
+.cmp-tray{position:fixed;bottom:0;left:0;right:0;z-index:150;background:var(--s);border-top:2px solid var(--ac);transform:translateY(100%);transition:transform 0.3s cubic-bezier(0.175,0.885,0.32,1.275);box-shadow:0 -8px 32px rgba(0,0,0,0.4);}
+.cmp-tray.open{transform:translateY(0);}
+.cmp-tray-header{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;background:var(--s2);border-bottom:1px solid var(--bd);}
+.cmp-tray-title{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--ac);}
+.cmp-tray-actions{display:flex;gap:8px;align-items:center;}
+.cmp-tray-body{overflow-x:auto;padding:0 24px 16px;}
+.cmp-table{width:100%;border-collapse:collapse;min-width:600px;}
+.cmp-table th{text-align:left;padding:10px 14px;font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.1em;color:var(--mt);font-family:'JetBrains Mono',monospace;border-bottom:1px solid var(--bd);white-space:nowrap;}
+.cmp-table td{padding:10px 14px;font-size:12px;border-bottom:1px solid var(--bd);vertical-align:top;}
+.cmp-table tr:last-child td{border-bottom:none;}
+.cmp-table tr:hover td{background:var(--s2);}
+.cmp-uni-cell{font-family:'Syne',sans-serif;font-weight:700;font-size:13px;color:var(--tx);}
+.cmp-uni-prog{font-size:11px;color:var(--mt2);margin-top:2px;}
+.cmp-remove{background:none;border:none;color:var(--mt);cursor:pointer;font-size:14px;padding:2px 6px;border-radius:5px;transition:all 0.2s;}
+.cmp-remove:hover{color:var(--sr);background:rgba(255,107,107,0.1);}
+.cmp-best{color:var(--ac);font-weight:700;}
+.toast{position:fixed;bottom:22px;right:22px;z-index:300;background:var(--s2);border:1px solid rgba(0,212,170,0.3);color:var(--tx);padding:10px 15px;border-radius:8px;font-size:13px;transform:translateY(60px);opacity:0;transition:all 0.3s cubic-bezier(0.175,0.885,0.32,1.275);box-shadow:0 6px 24px rgba(0,0,0,0.4);}
+.toast.show{transform:translateY(0);opacity:1;}
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <div class="logo" onclick="showPage('search')"><div class="logo-mark">🔭</div>Uni<span>scope</span></div>
+  <div class="nav-links">
+    <button class="nl active" id="nl-search" onclick="showPage('search')">Search</button>
+    <button class="nl" id="nl-articulation" onclick="showPage('articulation')">Articulation</button>
+    <button class="nl" id="nl-focus" onclick="showPage('focus')">In Focus</button>
+    <button class="nl" id="nl-tne" onclick="showPage('tne')">What is TNE?</button>
+    <div class="nav-dropdown" id="dd-about">
+      <button class="nl" id="nl-about" onclick="showPage('about')">About ▾</button>
+      <div class="nav-drop-menu" id="dm-about">
+        <button onclick="showPage('about')">About Uniscope</button>
+        <button onclick="showPage('data')">Data Sources</button>
+      </div>
+    </div>
+    <div class="nav-dropdown" id="dd-services">
+      <button class="nl" id="nl-services" onclick="showPage('services')">Services ▾</button>
+      <div class="nav-drop-menu" id="dm-services">
+        <button onclick="showPage('guidance')">Expert Guidance</button>
+        <button onclick="showPage('spotlights')">University Spotlights</button>
+        <button onclick="showPage('services')">Work With Us</button>
+      </div>
+    </div>
+    <button class="nl" id="nl-contact" onclick="showPage('contact')">Contact</button>
+  </div>
+  <div style="display:flex;gap:6px;align-items:center">
+    <span style="font-size:11px;color:var(--mt2);background:var(--s2);border:1px solid var(--bd2);border-radius:20px;padding:4px 10px;">Includes <strong style="color:var(--tne)">TNE</strong> + Articulation</span>
+  </div>
+</nav>
+
+<!-- ══════════════════════════════════════
+     SEARCH PAGE
+══════════════════════════════════════ -->
+<div id="page-search" class="page active">
+<div class="hbg"><div class="hgrid"></div>
+<div class="hc">
+  <div class="hbadge">✦ Global · TNE · Articulation · Top 500 Universities</div>
+  <h1 class="htitle">See your options,<br><span class="grad">anywhere in the world.</span></h1>
+  <p class="hsub">The smarter way to find world-class education. Compare cost, quality and career value , including overseas campuses, branch degrees and study pathways most students never discover.</p>
+<div style="display:flex;gap:10px;margin-bottom:28px;flex-wrap:wrap;justify-content:center;">
+  <div style="background:var(--s2);border:1px solid var(--bd2);border-radius:11px;padding:11px 16px;max-width:200px;text-align:left;">
+    <div style="font-size:18px;margin-bottom:5px;">🎓</div>
+    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ac);margin-bottom:3px;">You are in charge</div>
+    <div style="font-size:11px;color:var(--mt);line-height:1.45;">Students now have the voice, choice, and the power to demand world-class education on their terms.</div>
+  </div>
+  <div style="background:var(--s2);border:1px solid var(--bd2);border-radius:11px;padding:11px 16px;max-width:200px;text-align:left;">
+    <div style="font-size:18px;margin-bottom:5px;">🌍</div>
+    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ac);margin-bottom:3px;">Global access, local cost</div>
+    <div style="font-size:11px;color:var(--mt);line-height:1.45;">Top-ranked degrees are available closer to home than you think , at a fraction of the traditional price.</div>
+  </div>
+  <div style="background:var(--s2);border:1px solid var(--bd2);border-radius:11px;padding:11px 16px;max-width:200px;text-align:left;">
+    <div style="font-size:18px;margin-bottom:5px;">📊</div>
+    <div style="font-family:'Syne',sans-serif;font-size:13px;font-weight:700;color:var(--ac);margin-bottom:3px;">Evidence, not marketing</div>
+    <div style="font-size:11px;color:var(--mt);line-height:1.45;">Real data on cost, ranking, safety and eligibility. Make your biggest investment with eyes wide open.</div>
+  </div>
+</div>
+
+  <!-- QUICK FILTERS -->
+  <div class="quick-filters">
+    <span class="qf-label">Quick filter:</span>
+    <button class="qfbtn" id="qf-uk" onclick="toggleQF('uk')">🇬🇧 UK</button>
+    <button class="qfbtn" id="qf-us" onclick="toggleQF('us')">🇺🇸 US</button>
+    <button class="qfbtn" id="qf-ca" onclick="toggleQF('ca')">🇨🇦 CA</button>
+    <button class="qfbtn" id="qf-au" onclick="toggleQF('au')">🇦🇺 AU</button>
+    <button class="qfbtn" id="qf-ae" onclick="toggleQF('ae')">🇦🇪 UAE</button>
+    <button class="qfbtn tne-q" id="qf-tne" onclick="toggleQF('tne')">🏛 Branch Campus</button>
+  </div>
+
+  <div class="sbox">
+    <!-- MODE SELECTION , prominent -->
+    <div class="mode-label">How would you like to search?</div>
+    <div class="mode-cards">
+      <div class="mode-card active" id="mc-browse" onclick="setMode('browse')">
+        <div class="mc-icon">🔍</div>
+        <div class="mc-text">
+          <div class="mc-title">Browse All Programmes</div>
+          <div class="mc-desc">Explore everything , filter by subject, country, cost and more. No grades required.</div>
+        </div>
+      </div>
+      <div class="mode-card" id="mc-grades" onclick="setMode('grades')">
+        <div class="mc-icon">🎓</div>
+        <div class="mc-text">
+          <div class="mc-title">Search by My Grades</div>
+          <div class="mc-desc">Enter your A-Level or IB results and see which programmes you're eligible for, at a glance.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- GRADES PANEL -->
+    <div class="grades-panel" id="gpanel">
+      <div class="gptitle">Your qualifications , results will show eligibility for each programme</div>
+      <div class="grow">
+        <div class="gf"><label>Qualification type</label>
+          <select id="g-qual" onchange="updateGF()"><option value="">Select type</option><option value="al">Cambridge A-Levels (HSC)</option><option value="ib">IB Diploma</option></select>
+        </div>
+        <div class="gf" id="g-al-w" style="display:none"><label>A-Level grades</label><input class="finp" id="g-al" placeholder="e.g. AAB" maxlength="8" style="width:120px"></div>
+        <div class="gf" id="g-ib-w" style="display:none"><label>IB total points</label><input class="finp" id="g-ib" type="number" min="24" max="45" placeholder="e.g. 36" style="width:100px"></div>
+        <div class="gf"><label>IELTS (optional)</label><input class="finp" id="g-ie" type="number" step="0.5" min="4.5" max="9" placeholder="e.g. 6.5" style="width:100px"></div>
+        <span class="ghint">Leave blank to browse everything with eligibility shown where known</span>
+      </div>
+      <div class="elig-key">
+        <span class="ek"><span style="color:var(--ac);font-weight:700">✓</span> You meet the requirements</span>
+        <span class="ek"><span style="color:var(--sa);font-weight:700">~</span> Near miss , worth enquiring</span>
+        <span class="ek"><span style="color:var(--sr);font-weight:700">✕</span> Below requirements</span>
+      </div>
+    </div>
+
+    <div class="sdiv"><span>Filters</span></div>
+
+    <!-- MAIN FILTERS: Discipline · Level · QS World Rank · Country · Nearest City -->
+    <div class="sr4" style="margin-bottom:9px;">
+      <div class="sf"><span class="fl">Discipline</span>
+        <select class="fsel" id="s-disc">
+          <option value="">All Disciplines</option>
+          <option value="Business">Business &amp; Management</option>
+          <option value="Accountancy">Accountancy &amp; Finance</option>
+          <option value="Engineering">Engineering &amp; Technology</option>
+          <option value="Computer Science">Computer Science / IT / AI</option>
+          <option value="Law">Law</option>
+          <option value="Medicine">Medicine &amp; Health</option>
+          <option value="Economics">Economics</option>
+        </select>
+      </div>
+      <div class="sf"><span class="fl">Level</span>
+        <select class="fsel" id="s-lev">
+          <option value="">UG &amp; PGT</option>
+          <option value="UG">Undergraduate (UG)</option>
+          <option value="PGT">Postgraduate (PGT)</option>
+        </select>
+      </div>
+      <div class="sf"><span class="fl">QS World Rank</span>
+        <select class="fsel" id="s-rank">
+          <option value="">Any (Top 500)</option>
+          <option value="1-100">Top 100</option>
+          <option value="101-250">101–250</option>
+          <option value="251-500">251–500</option>
+        </select>
+      </div>
+      <div class="sf"><span class="fl">Nearest City</span>
+        <select class="fsel" id="s-home">
+          <optgroup label="🇲🇺 Mauritius"><option value="Port Louis">Port Louis</option></optgroup>
+          <optgroup label="🇳🇬 Nigeria">
+            <option value="Lagos">Lagos</option><option value="Abuja">Abuja</option>
+            <option value="Kano">Kano</option><option value="Port Harcourt">Port Harcourt</option>
+            <option value="Enugu">Enugu</option>
+          </optgroup>
+          <optgroup label="🇰🇪 Kenya">
+            <option value="Nairobi">Nairobi</option><option value="Mombasa">Mombasa</option>
+            <option value="Kisumu">Kisumu</option>
+          </optgroup>
+          <optgroup label="🇬🇭 Ghana">
+            <option value="Accra">Accra</option><option value="Kumasi">Kumasi</option>
+            <option value="Tamale">Tamale</option>
+          </optgroup>
+          <optgroup label="🇿🇦 South Africa">
+            <option value="Johannesburg">Johannesburg</option><option value="Cape Town">Cape Town</option>
+            <option value="Durban">Durban</option><option value="Pretoria">Pretoria</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+
+    <!-- SEARCH + ADVANCED TOGGLE ROW -->
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:0;">
+      <button class="sbtn" onclick="doSearch()" style="flex-shrink:0;">Search →</button>
+      <button id="adv-toggle" onclick="toggleAdv()" style="padding:9px 16px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--mt2);font-size:13px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.2s;flex-shrink:0;">
+        ⚙ Advanced filters
+      </button>
+      <span id="adv-active-count" style="font-size:11px;color:var(--ac);display:none;font-family:'JetBrains Mono',monospace;"></span>
+    </div>
+
+    <!-- ADVANCED FILTERS PANEL -->
+    <div id="adv-panel" style="display:none;background:rgba(0,212,170,0.03);border:1px solid rgba(0,212,170,0.15);border-radius:11px;padding:16px 18px;margin-top:10px;">
+      <div style="font-size:10px;font-weight:600;color:var(--ac);text-transform:uppercase;letter-spacing:0.1em;font-family:'JetBrains Mono',monospace;margin-bottom:12px;">Advanced Filters</div>
+      <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:flex-end;">
+        <div class="sf"><span class="fl">Language</span>
+          <select class="fsel" id="s-lang" onchange="updateAdvCount()">
+            <option value="">Any</option>
+            <option value="English">English</option>
+            <option value="French">French</option>
+          </select>
+        </div>
+        <div class="sf"><span class="fl">Max Annual Cost</span>
+          <select class="fsel" id="s-cost" onchange="updateAdvCount()">
+            <option value="">No limit</option>
+            <option value="10000">Under $10k</option>
+            <option value="20000">Under $20k</option>
+            <option value="35000">Under $35k</option>
+            <option value="50000">Under $50k</option>
+          </select>
+        </div>
+        <div class="sf"><span class="fl">Campus Type</span>
+          <select class="fsel" id="s-type" onchange="updateAdvCount()">
+            <option value="">All Types</option>
+            <option value="Home">Home Campus</option>
+            <option value="TNE">Branch Campus</option>
+            <option value="Online">Online Only</option>
+          </select>
+        </div>
+        <div class="sf"><span class="fl">QS Subject Rank</span>
+          <select class="fsel" id="s-sub" onchange="updateAdvCount()">
+            <option value="">Any</option>
+            <option value="1-50">Top 50</option>
+            <option value="51-100">51–100</option>
+            <option value="101-200">101–200</option>
+            <option value="201+">201+</option>
+          </select>
+        </div>
+        <div class="sf"><span class="fl">Region</span>
+          <select class="fsel" id="s-region" onchange="updateCountry();updateAdvCount()">
+            <option value="">All Regions</option>
+            <option value="Africa">Africa</option>
+            <option value="Middle East">Middle East</option>
+            <option value="Europe">Europe</option>
+            <option value="North America">North America</option>
+            <option value="Asia-Pacific">Asia-Pacific</option>
+            <option value="Online Only">Online Only</option>
+          </select>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+        <div class="sf" style="flex:1;max-width:220px;">
+          <span class="fl">Country</span>
+          <select class="fsel" id="s-country" onchange="updateAdvCount()"><option value="">All Countries</option></select>
+        </div>
+        <button onclick="resetAdv()" style="padding:7px 14px;background:none;border:1px solid var(--bd2);border-radius:var(--rs);color:var(--mt);font-size:12px;cursor:pointer;font-family:'Outfit',sans-serif;margin-top:14px;">Reset advanced</button>
+      </div>
+    </div>
+  </div>
+  <!-- NEWSLETTER STRIP -->
+  <div style="display:flex;align-items:center;gap:10px;background:var(--s2);border:1px solid rgba(0,212,170,0.2);border-radius:12px;padding:12px 18px;margin-bottom:20px;max-width:940px;width:100%;">
+    <div style="font-size:20px">📬</div>
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--tx);margin-bottom:2px;">The Uniscope Weekly</div>
+      <div style="font-size:11px;color:var(--mt);">New campuses, TNE developments, cost comparisons and expert insights , free, every week.</div>
+    </div>
+    <div style="display:flex;gap:8px;margin-left:auto;flex-shrink:0;">
+      <input id="nl-email" type="email" placeholder="your@email.com" style="padding:8px 12px;background:var(--s3);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--tx);font-size:13px;font-family:'Outfit',sans-serif;outline:none;width:200px;" onfocus="this.style.borderColor='var(--ac)'" onblur="this.style.borderColor='var(--bd2)'">
+      <button onclick="subscribeNL()" style="padding:8px 16px;background:var(--ac);color:#06080f;border:none;border-radius:var(--rs);font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;white-space:nowrap;">Subscribe →</button>
+    </div>
+  </div>
+
+  <div class="hstats">
+    <div class="hstat"><strong>500+</strong> Programmes</div>
+    <div class="hstat"><strong>7</strong> Disciplines</div>
+    <div class="hstat"><strong>Top 500</strong> QS Only</div>
+    <div class="hstat"><strong>90+</strong> TNE Campuses</div>
+    <div class="hstat"><strong>20+</strong> Departure Cities</div>
+  </div>
+</div>
+</div>
+<div class="rsec" id="rsec">
+  <div class="rhdr">
+    <div><div class="rtitle" id="rtitle">Results</div><div class="rmeta" id="rmeta"></div></div>
+    <div class="rctrl">
+      <select class="ssel" id="ssel" onchange="sortR()"><option value="match">Best Match</option><option value="ca">Cost: Low→High</option><option value="cd">Cost: High→Low</option><option value="rank">QS Ranking</option></select>
+      <button class="ebtn" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑ Edit Search</button>
+    </div>
+  </div>
+  <div class="eligbanner" id="eligbanner" style="display:none"><div style="font-size:15px">🎯</div><div class="etxt" id="etxt"></div></div>
+  <div class="clist" id="clist"></div>
+</div>
+
+  <!-- FEATURED COURSE LISTINGS -->
+  <div style="max-width:1340px;margin:0 auto;padding:0 28px 60px;" id="course-listings-section">
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:28px 0 18px;border-bottom:1px solid var(--bd);margin-bottom:20px;">
+      <div>
+        <div style="font-family:'Syne',sans-serif;font-size:17px;font-weight:700;">Featured Programmes</div>
+        <div style="font-size:12px;color:var(--mt);margin-top:2px;">Promoted by partner institutions · Clearly labelled · Always free to apply</div>
+      </div>
+      <button onclick="showPage('services')" style="padding:7px 14px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--mt2);font-size:12px;cursor:pointer;font-family:'Outfit',sans-serif;">List your programme →</button>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;">
+      <div style="background:var(--s);border:1px solid rgba(245,200,66,0.25);border-radius:var(--r);padding:20px;position:relative;">
+        <div style="position:absolute;top:12px;right:12px;background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.25);color:var(--go);font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;text-transform:uppercase;letter-spacing:0.08em;">Sponsored</div>
+        <div style="font-size:22px;margin-bottom:10px;">🏛</div>
+        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:3px;">University of Birmingham Dubai</div>
+        <div style="font-size:12px;color:var(--tne);font-weight:600;margin-bottom:8px;">MBA · MSc Management · MSc Finance</div>
+        <div style="font-size:12px;color:var(--mt2);line-height:1.6;margin-bottom:12px;">Russell Group quality in the heart of Dubai. Same degree as the UK campus , at significantly lower cost. Applications open for September 2025.</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mt);margin-bottom:12px;">
+          <span>🇦🇪 Dubai, UAE</span><span>QS #101</span><span>From $19,500/yr</span>
+        </div>
+        <button onclick="showPage('focus')" style="width:100%;padding:8px;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:var(--rs);color:#06080f;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Find Out More →</button>
+      </div>
+      <div style="background:var(--s);border:1px solid rgba(245,200,66,0.25);border-radius:var(--r);padding:20px;position:relative;">
+        <div style="position:absolute;top:12px;right:12px;background:rgba(245,200,66,0.1);border:1px solid rgba(245,200,66,0.25);color:var(--go);font-size:9px;font-weight:700;padding:2px 7px;border-radius:10px;text-transform:uppercase;letter-spacing:0.08em;">Sponsored</div>
+        <div style="font-size:22px;margin-bottom:10px;">🎓</div>
+        <div style="font-family:'Syne',sans-serif;font-size:15px;font-weight:700;margin-bottom:3px;">Carnegie Mellon University Africa</div>
+        <div style="font-size:12px;color:var(--tne);font-weight:600;margin-bottom:8px;">MSc Information Technology · MSc ECE</div>
+        <div style="font-size:12px;color:var(--mt2);line-height:1.6;margin-bottom:12px;">A CMU degree on the African continent. World-class computer science in Kigali, Rwanda , with living costs a fraction of Pittsburgh.</div>
+        <div style="display:flex;justify-content:space-between;align-items:center;font-size:11px;color:var(--mt);margin-bottom:12px;">
+          <span>🇷🇼 Kigali, Rwanda</span><span>QS #53</span><span>$28,000/yr</span>
+        </div>
+        <button onclick="showPage('focus')" style="width:100%;padding:8px;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:var(--rs);color:#06080f;font-size:12px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Find Out More →</button>
+      </div>
+      <div style="background:var(--s2);border:2px dashed var(--bd2);border-radius:var(--r);padding:20px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;min-height:200px;">
+        <div style="font-size:28px;margin-bottom:10px;">➕</div>
+        <div style="font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--mt2);margin-bottom:6px;">Feature your programme here</div>
+        <div style="font-size:12px;color:var(--mt);line-height:1.5;margin-bottom:14px;">Reach thousands of qualified international students actively searching for their next degree.</div>
+        <button onclick="showPage('services')" style="padding:8px 16px;background:var(--s3);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--ac);font-size:12px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;">Get in touch →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════
+     ARTICULATION PAGE
+══════════════════════════════════════ -->
+<div id="page-articulation" class="page">
+<div class="cp" style="max-width:1100px;">
+  <div class="cpey">Pathway Agreements</div>
+  <h1 class="cptitle"><span class="grad">Articulation</span> Agreements</h1>
+  <p class="cplead">Start your degree at a local African university , then transfer to a top global institution to complete it. Lower overall cost, local start, world-class finish. Some agreements award certificates from <em>both</em> institutions.</p>
+
+  <div class="infobox"><strong>What is an articulation agreement?</strong> A formal agreement between two universities that allows credit from one to be recognised at the other. A student might complete 1, 2, or 3 years locally, then transfer abroad , paying lower local fees for the early years and only moving internationally for the final stage. The receiving university awards the degree; in some cases both institutions award certificates.</div>
+
+  <div class="cpsec">
+    <div class="cpst">Filter agreements</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr auto;gap:12px;align-items:flex-end;margin-bottom:20px;background:var(--s2);border:1px solid rgba(0,212,170,0.25);border-radius:14px;padding:18px;">
+      <div class="sf">
+        <span class="fl">Origin country (local university)</span>
+        <select class="fsel" id="art-origin" onchange="renderArt()">
+          <option value="">All countries</option>
+          <option value="Kenya">🇰🇪 Kenya</option>
+          <option value="Nigeria">🇳🇬 Nigeria</option>
+          <option value="Ghana">🇬🇭 Ghana</option>
+          <option value="South Africa">🇿🇦 South Africa</option>
+          <option value="Mauritius">🇲🇺 Mauritius</option>
+          <option value="Uganda">🇺🇬 Uganda</option>
+          <option value="Tanzania">🇹🇿 Tanzania</option>
+          <option value="Ethiopia">🇪🇹 Ethiopia</option>
+          <option value="Rwanda">🇷🇼 Rwanda</option>
+          <option value="Senegal">🇸🇳 Senegal</option>
+          <option value="Egypt">🇪🇬 Egypt</option>
+        </select>
+      </div>
+      <div class="sf">
+        <span class="fl">Partner country (destination)</span>
+        <select class="fsel" id="art-partner" onchange="renderArt()">
+          <option value="">All countries</option>
+          <option value="United Kingdom">🇬🇧 United Kingdom</option>
+          <option value="USA">🇺🇸 United States</option>
+          <option value="Canada">🇨🇦 Canada</option>
+          <option value="Australia">🇦🇺 Australia</option>
+          <option value="UAE">🇦🇪 UAE</option>
+          <option value="France">🇫🇷 France</option>
+          <option value="Netherlands">🇳🇱 Netherlands</option>
+          <option value="Germany">🇩🇪 Germany</option>
+        </select>
+      </div>
+      <button class="sbtn" onclick="document.getElementById('art-origin').value='';document.getElementById('art-partner').value='';renderArt()">Reset</button>
+    </div>
+  </div>
+
+  <div id="art-list"></div>
+
+  <div class="infobox" style="margin-top:8px"><strong>Note:</strong> Articulation agreements change frequently. Always verify directly with both institutions that the agreement is current and covers your specific programme before applying. Uniscope verifies agreements periodically but cannot guarantee real-time accuracy. <span style="color:var(--ac);cursor:pointer" onclick="showPage('contact')">Contact us</span> if you know of an agreement not listed here.</div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     IN FOCUS PAGE
+══════════════════════════════════════ -->
+<div id="page-focus" class="page">
+<div class="cp" style="max-width:1100px;">
+  <div class="cpey">Campus Spotlight</div>
+  <h1 class="cptitle">In <span class="grad">Focus</span></h1>
+  <p class="cplead">A closer look at world-class branch campuses and TNE programmes offering exceptional value. Same degree, smarter choice.</p>
+  <div class="focus-grid">
+    <div class="focus-card">
+      <div class="focus-card-top">
+        <div class="fc-badges"><span class="b bt2">🏛 Branch Campus</span><span class="b bgo">🇬🇧 UK Degree</span><span class="b bem">● Top Pick</span></div>
+        <div class="fc-uni">University of Birmingham Dubai</div>
+        <div class="fc-sub">Dubai International Academic City, UAE</div>
+        <div class="fc-loc">📍 Dubai, UAE · Est. 2008</div>
+      </div>
+      <div class="focus-card-body">
+        <div class="fc-stat-row">
+          <div class="fc-stat"><div class="fc-stat-label">QS World</div><div class="fc-stat-val gold">#101</div></div>
+          <div class="fc-stat"><div class="fc-stat-label">Saving vs UK</div><div class="fc-stat-val green">~$12k/yr</div></div>
+          <div class="fc-stat"><div class="fc-stat-label">Safety</div><div class="fc-stat-val green">● Safe</div></div>
+        </div>
+        <div class="fc-desc">Identical Russell Group degree. Strong business and engineering faculties. Direct flights from Port Louis, Lagos, Nairobi and Accra. Dramatically lower living costs than the UK.</div>
+        <div class="fc-progs">
+          <div class="fc-prog"><span class="fc-prog-name">MBA / MSc Management</span><span class="fc-prog-fee">$19,500/yr</span></div>
+          <div class="fc-prog"><span class="fc-prog-name">MSc Finance</span><span class="fc-prog-fee">$19,500/yr</span></div>
+          <div class="fc-prog"><span class="fc-prog-name">BEng Engineering</span><span class="fc-prog-fee">$18,000/yr</span></div>
+        </div>
+        <div class="fc-actions"><button class="cbtn cbt-p" onclick="showPage('search')">Search →</button><button class="cbtn cbt-s" onclick="showPage('contact')">Enquire</button></div>
+      </div>
+    </div>
+    <div class="focus-card">
+      <div class="focus-card-top">
+        <div class="fc-badges"><span class="b bt2">🏛 Branch Campus</span><span class="b bgo">🇺🇸 US Degree</span><span class="b bem">● Africa-Based</span></div>
+        <div class="fc-uni">Carnegie Mellon University Africa</div>
+        <div class="fc-sub">Kigali Innovation City, Rwanda</div>
+        <div class="fc-loc">📍 Kigali, Rwanda · Est. 2011</div>
+      </div>
+      <div class="focus-card-body">
+        <div class="fc-stat-row">
+          <div class="fc-stat"><div class="fc-stat-label">QS World</div><div class="fc-stat-val gold">#53</div></div>
+          <div class="fc-stat"><div class="fc-stat-label">Living Cost</div><div class="fc-stat-val green">~$7k/yr</div></div>
+          <div class="fc-stat"><div class="fc-stat-label">Safety</div><div class="fc-stat-val green">● Safe</div></div>
+        </div>
+        <div class="fc-desc">The only CMU campus on the African continent. Full CMU degrees in IT and Engineering. Living costs a fraction of Pittsburgh. Rwanda's safety and infrastructure make it exceptional.</div>
+        <div class="fc-progs">
+          <div class="fc-prog"><span class="fc-prog-name">MSc Information Technology</span><span class="fc-prog-fee">$28,000/yr</span></div>
+          <div class="fc-prog"><span class="fc-prog-name">MSc Electrical &amp; Computer Eng.</span><span class="fc-prog-fee">$28,000/yr</span></div>
+        </div>
+        <div class="fc-actions"><button class="cbtn cbt-p" onclick="showPage('search')">Search →</button><button class="cbtn cbt-s" onclick="showPage('contact')">Enquire</button></div>
+      </div>
+    </div>
+    <div class="focus-card">
+      <div class="focus-card-top">
+        <div class="fc-badges"><span class="b bt2">🏛 Branch Campus</span><span class="b bgo">🇬🇧 UK Degree</span><span class="b bl2">3 Global Campuses</span></div>
+        <div class="fc-uni">Heriot-Watt University</div>
+        <div class="fc-sub">Dubai · Malaysia · Edinburgh</div>
+        <div class="fc-loc">📍 Dubai UAE · Putrajaya Malaysia · Edinburgh UK</div>
+      </div>
+      <div class="focus-card-body">
+        <div class="fc-stat-row">
+          <div class="fc-stat"><div class="fc-stat-label">QS World</div><div class="fc-stat-val gold">#350</div></div>
+          <div class="fc-stat"><div class="fc-stat-label">Dubai Saving</div><div class="fc-stat-val green">~$10k/yr</div></div>
+          <div class="fc-stat"><div class="fc-stat-label">Campuses</div><div class="fc-stat-val">3 Global</div></div>
+        </div>
+        <div class="fc-desc">One of the world's most genuinely global universities. Students can transfer between campuses mid-degree. Strong in Engineering, Business and Actuarial Science.</div>
+        <div class="fc-progs">
+          <div class="fc-prog"><span class="fc-prog-name">MSc International Business (Dubai)</span><span class="fc-prog-fee">$13,500/yr</span></div>
+          <div class="fc-prog"><span class="fc-prog-name">BSc Actuarial Science (Malaysia)</span><span class="fc-prog-fee">$9,000/yr</span></div>
+        </div>
+        <div class="fc-actions"><button class="cbtn cbt-p" onclick="showPage('search')">Search →</button><button class="cbtn cbt-s" onclick="showPage('contact')">Enquire</button></div>
+      </div>
+    </div>
+    <div class="focus-card">
+      <div class="focus-card-top">
+        <div class="fc-badges"><span class="b bt2">🏛 Branch Campus</span><span class="b bgo">🇦🇺 Australian Degree</span><span class="b bem">● Best Value</span></div>
+        <div class="fc-uni">University of Wollongong Dubai</div>
+        <div class="fc-sub">Dubai Knowledge Park, UAE</div>
+        <div class="fc-loc">📍 Dubai, UAE · Est. 1993</div>
+      </div>
+      <div class="focus-card-body">
+        <div class="fc-stat-row">
+          <div class="fc-stat"><div class="fc-stat-label">QS World</div><div class="fc-stat-val gold">#650</div></div>
+          <div class="fc-stat"><div class="fc-stat-label">Annual Tuition</div><div class="fc-stat-val green">~$10.5k</div></div>
+          <div class="fc-stat"><div class="fc-stat-label">Est.</div><div class="fc-stat-val">1993</div></div>
+        </div>
+        <div class="fc-desc">One of the oldest TNE campuses in the world. Australian-accredited degrees in CS, Engineering and Business at competitive fees. An excellent stepping stone to postgraduate study at a higher-ranked institution.</div>
+        <div class="fc-progs">
+          <div class="fc-prog"><span class="fc-prog-name">BSc Computer Science</span><span class="fc-prog-fee">$10,500/yr</span></div>
+          <div class="fc-prog"><span class="fc-prog-name">BEng Engineering</span><span class="fc-prog-fee">$11,000/yr</span></div>
+        </div>
+        <div class="fc-actions"><button class="cbtn cbt-p" onclick="showPage('search')">Search →</button><button class="cbtn cbt-s" onclick="showPage('contact')">Enquire</button></div>
+      </div>
+    </div>
+  </div>
+  <div class="infobox" style="margin-top:10px"><strong>Want your institution featured?</strong> Uniscope showcases TNE campuses that offer genuine quality and value. <span style="color:var(--ac);cursor:pointer" onclick="showPage('contact')">Contact us</span> to discuss a featured listing.</div>
+</div>
+</div>
+
+<!-- TNE PAGE -->
+<div id="page-tne" class="page">
+<div class="cp">
+  <div class="cpey">Guide for students</div>
+  <h1 class="cptitle">What is <span class="grad">Transnational Education?</span></h1>
+  <p class="cplead">TNE , <strong>Transnational Education</strong> , means studying for a degree from a university in a different country to the one awarding it. Earn a UK, Australian, Canadian or US degree without leaving your home region. For a comprehensive independent guide to TNE quality and standards, visit <a href="https://www.tneinstitute.com" target="_blank" style="color:var(--bl);font-weight:600">tneinstitute.com →</a></p>
+  <div class="cpsec">
+    <div class="cpst">Why does TNE matter?</div>
+    <p class="cpb">Instead of spending £40,000+ per year studying in London, you might study the same University of Birmingham degree in Dubai for significantly less , with lower living costs, no UK visa complexity, and a much shorter flight from home. The degree awarded is <strong>identical</strong>. Employers recognise the awarding institution , not where you physically studied.</p>
+    <div class="infobox"><strong>Important:</strong> Always verify that the TNE campus is accredited by the national body in the delivery country and that the degree is formally awarded by the home university. Uniscope only lists programmes where both conditions are confirmed. For detailed guidance on TNE quality frameworks, visit <a href="https://www.tneinstitute.com" target="_blank" style="color:var(--ac)">tneinstitute.com</a>.</div>
+  </div>
+  <div class="cpsec">
+    <div class="cpst">The four main TNE delivery models</div>
+    <div class="tgrid">
+      <div class="tcard"><div class="tcard-icon">🏛</div><div class="tcard-title">Branch Campus</div><div class="tcard-body">A university opens a full physical campus in another country under its own brand. The parent university controls curriculum and awards the degree.</div><div class="tcard-ex">e.g. University of Birmingham Dubai, CMU Africa (Kigali)</div></div>
+      <div class="tcard"><div class="tcard-icon">🤝</div><div class="tcard-title">Franchise Programme</div><div class="tcard-body">A local institution delivers a programme designed by an overseas university, which awards the degree and maintains quality control.</div><div class="tcard-ex">e.g. A local college delivering a University of Hertfordshire programme</div></div>
+      <div class="tcard"><div class="tcard-icon">🔗</div><div class="tcard-title">Joint / Dual Degree</div><div class="tcard-body">Two universities collaborate on delivery. Students may receive degrees from one or both institutions on completion.</div><div class="tcard-ex">e.g. Joint MSc awarded by a UK and East African university</div></div>
+      <div class="tcard"><div class="tcard-icon">💻</div><div class="tcard-title">Online / Distance</div><div class="tcard-body">Full programme delivered online. Study from anywhere. The degree carries the same weight as an on-campus award.</div><div class="tcard-ex">e.g. University of London Worldwide BSc</div></div>
+    </div>
+  </div>
+  <div class="cpsec">
+    <div class="cpst">How is quality assured?</div>
+    <div class="qgrid">
+      <div class="qcard"><div class="qcard-icon">🏆</div><div class="qcard-title">Same Degree Award</div><div class="qcard-body">The certificate is issued by the home university. Non-negotiable for reputable TNE.</div></div>
+      <div class="qcard"><div class="qcard-icon">📋</div><div class="qcard-title">Curriculum Control</div><div class="qcard-body">The home university controls curriculum, assessments and marking throughout.</div></div>
+      <div class="qcard"><div class="qcard-icon">🔍</div><div class="qcard-title">External Review</div><div class="qcard-body">UK programmes reviewed by the QAA. Australian by TEQSA. Regular mandatory inspections.</div></div>
+      <div class="qcard"><div class="qcard-icon">🌍</div><div class="qcard-title">British Council Register</div><div class="qcard-body">Public register of UK TNE activity , a primary verification source used by Uniscope.</div></div>
+      <div class="qcard"><div class="qcard-icon">📊</div><div class="qcard-title">Employer Recognition</div><div class="qcard-body">Major employers evaluate the awarding institution, not delivery location. A Birmingham degree is a Birmingham degree.</div></div>
+      <div class="qcard"><div class="qcard-icon">⚠️</div><div class="qcard-title">What to Watch For</div><div class="qcard-body">Avoid programmes where the awarding institution is unclear or where the local partner issues the degree.</div></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><button class="sbtn" onclick="showPage('search')">← Back to Search</button></div>
+</div>
+</div>
+
+<!-- DATA SOURCES PAGE -->
+<div id="page-data" class="page">
+<div class="cp">
+  <div class="cpey">Transparency &amp; accuracy</div>
+  <h1 class="cptitle">Our <span class="grad">Data</span></h1>
+  <p class="cplead">Uniscope aggregates data from multiple public and licensed sources. This page explains where each data type comes from, how current it is, and what you must independently verify.</p>
+
+  <div class="cpsec">
+    <div class="cpst">Understanding the search filters</div>
+    <div class="tgrid" style="margin-top:0">
+      <div class="tcard">
+        <div class="tcard-icon">🏆</div>
+        <div class="tcard-title">What is QS World Ranking?</div>
+        <div class="tcard-body">QS World University Rankings ranks universities globally across 6 indicators including academic reputation, employer reputation, faculty-to-student ratio, and research impact. A university ranked #1–100 is in the global top 1% , exceptionally competitive and internationally recognised. Uniscope only includes universities within the top 500. Learn more at <a href="https://www.topuniversities.com" target="_blank" style="color:var(--bl)">topuniversities.com</a>.</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">📚</div>
+        <div class="tcard-title">What is QS Subject Ranking?</div>
+        <div class="tcard-body">QS also ranks universities by subject area , so a university ranked #300 overall might be in the global top 50 for Engineering or Business. Subject rankings are often more relevant than overall rank when choosing a specific degree. A university in the QS top 100 for your subject is genuinely world-class in that field, regardless of its overall position.</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">🎓</div>
+        <div class="tcard-title">What is UG vs PGT?</div>
+        <div class="tcard-body"><strong>UG (Undergraduate)</strong> , your first degree, typically studied after secondary school (A-Levels, IB, or equivalent). Usually 3–4 years. You graduate with a Bachelor's degree (BSc, BA, BEng, LLB etc.).<br><br><strong>PGT (Postgraduate Taught)</strong> , a Masters-level programme, typically 1–2 years, studied after completing a Bachelor's degree. You graduate with an MSc, MA, MBA, LLM etc.</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">🌍</div>
+        <div class="tcard-title">Why only these 7 disciplines?</div>
+        <div class="tcard-body">Business, Accountancy, Engineering, Computer Science/AI, Law, Medicine and Economics represent the most popular disciplines among international students globally , and the ones with the strongest overseas campus and articulation provision. Focusing here allows us to maintain data quality. We plan to expand to additional disciplines as Uniscope grows.</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">🌍</div>
+        <div class="tcard-title">Why focus on Africa?</div>
+        <div class="tcard-body">Africa has some of the world's fastest-growing student populations and some of the largest information gaps in higher education decision-making. Students here are often paying the most (relative to local incomes) for the least transparent advice. We start where the need is greatest. Our ambition is global , our focus is deliberate.</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">🏛</div>
+        <div class="tcard-title">What is TNE / an overseas campus?</div>
+        <div class="tcard-body">Transnational Education (TNE) means studying for a degree from a university in a different country to the one that awards it. A branch campus is a full university campus opened in another country , like University of Birmingham Dubai. The degree awarded is identical to the home campus. For a comprehensive guide to TNE quality standards, visit <a href="https://www.tneinstitute.com" target="_blank" style="color:var(--bl)">tneinstitute.com</a>.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpsec">
+    <div class="cpst">Data sources</div>
+    <div class="dsgrid">
+    <div class="dscard"><div class="dstop"><div class="dssrc">🏆 QS Rankings</div><span class="fresh fann">● Annual</span></div><div class="dsbody">Published annually by Quacquarelli Symonds. Verify at <a href="https://www.topuniversities.com" target="_blank">topuniversities.com</a>.</div></div>
+    <div class="dscard"><div class="dstop"><div class="dssrc">💷 Tuition Fees</div><span class="fresh fman">● Manual</span></div><div class="dsbody">Sourced from university websites, updated periodically. Always confirm directly before applying.</div></div>
+    <div class="dscard"><div class="dstop"><div class="dssrc">🏠 Living Costs</div><span class="fresh fann">● Annual index</span></div><div class="dsbody">Based on Numbeo Cost of Living Index and EIU Cost of Living Survey. Student lifestyle estimates.</div></div>
+    <div class="dscard"><div class="dstop"><div class="dssrc">✈️ Flight Routes</div><span class="fresh fman">● Route data only</span></div><div class="dsbody">Route type from airline databases. <strong>Route only , not prices.</strong> Check Skyscanner for fares.</div></div>
+    <div class="dscard"><div class="dstop"><div class="dssrc">🛡️ Safety Scores</div><span class="fresh fann">● Annual</span></div><div class="dsbody">Global Peace Index, Numbeo Crime Index, WHO. Country/city-level data , local conditions vary.</div></div>
+    <div class="dscard"><div class="dstop"><div class="dssrc">🏛 TNE & Articulation</div><span class="fresh fman">● Manual</span></div><div class="dsbody">British Council TNE Dashboard, TEQSA, and university websites. For independent TNE quality guidance, see <a href="https://www.tneinstitute.com" target="_blank">tneinstitute.com</a>. Always verify with institutions directly.</div></div>
+    <div class="dscard"><div class="dstop"><div class="dssrc">📋 Entry Requirements</div><span class="fresh fman">● Manual</span></div><div class="dsbody">From university prospectuses. Eligibility indicator is a <strong>guide only</strong> , universities make final decisions.</div></div>
+    <div class="dscard"><div class="dstop"><div class="dssrc">💱 Currency (MUR)</div><span class="fresh flive">● Live rate</span></div><div class="dsbody">USD to MUR conversion updated daily. MUR figures are indicative and fluctuate with the market.</div></div>
+  </div>
+  </div>
+  <div class="disclbox" style="margin-top:22px">
+    <strong>⚠️ Legal Disclaimer</strong><br><br>
+    Uniscope is an <strong>independent information service</strong>. We are not an educational institution, recruitment agent, or admissions service. All data is provided for <strong>general informational purposes only</strong>.<br><br>
+    We make reasonable efforts to ensure accuracy but <strong>cannot guarantee that information is current, complete, or error-free</strong>. Fees, entry requirements, programme availability and campus locations are subject to change without notice. Users must verify all information directly with the relevant university before making any application or financial commitment.<br><br>
+    Uniscope accepts <strong>no liability</strong> for decisions made based on information on this platform. This does not constitute educational, financial, immigration, or legal advice. Flight route information is indicative only. Safety scores represent general country/city-level data and do not reflect specific campus environments.
+  </div>
+  <div style="margin-top:22px"><button class="sbtn" onclick="showPage('search')">← Back to Search</button></div>
+</div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div id="page-about" class="page">
+<div class="cp">
+  <div class="cpey">Why Uniscope exists</div>
+  <h1 class="cptitle">The <span class="grad">Student Revolution</span> in Higher Education</h1>
+  <p class="cplead">Something fundamental has shifted in global higher education. Students are no longer passive recipients of what universities choose to offer them. They are informed consumers , and the smartest ones are finding that the rules have completely changed.</p>
+
+  <div class="mission-box">
+    <div class="mission-title">⚡ The Amazon Moment for Education</div>
+    <div class="mission-body">
+      Amazon didn't just make shopping cheaper. It fundamentally transferred power from retailers to consumers , giving people access to more choice, more information, and more value than ever before, without leaving home.<br><br>
+      <strong>The same shift is happening in higher education right now.</strong> A student in Lagos, Nairobi, Accra or Port Louis can today access a University of Birmingham degree in Dubai, a Carnegie Mellon degree in Kigali, or a London School of Economics degree online , without the extortionate UK living costs, the visa lottery, or the 12-hour flight. The degree on their CV is identical. The cost is dramatically lower.<br><br>
+      Most students don't know this yet. <strong>Uniscope exists to change that.</strong>
+    </div>
+  </div>
+
+  <div class="cpsec">
+    <div class="cpst">Students are now in charge</div>
+    <p class="cpb">For decades, the international higher education market worked on one model: students paid whatever universities asked, moved wherever universities were located, and navigated opaque information systems designed to serve institutions, not learners.</p>
+    <p class="cpb">That model is breaking down. <strong>Students now have the voice, the choice, and , critically , they hold the financial power.</strong> Universities that want to grow internationally must come to students, not the other way around. The explosion of overseas campuses, online degrees, and transnational partnerships is direct evidence of this shift.</p>
+    <p class="cpb">Uniscope is built on a simple conviction: <strong>every student deserves to make their biggest investment decision with complete, accurate, unbiased information.</strong> Not brochure copy. Not a recruitment agent's pitch. Real data on real costs, real rankings, and real pathways.</p>
+  </div>
+
+  <div class="about-stats">
+    <div class="about-stat"><div class="about-stat-num">$40k+</div><div class="about-stat-label">Typical UK annual cost vs $10k alternatives</div></div>
+    <div class="about-stat"><div class="about-stat-num">90+</div><div class="about-stat-label">Overseas branch campuses now operating</div></div>
+    <div class="about-stat"><div class="about-stat-num">500+</div><div class="about-stat-label">Programmes compared on Uniscope</div></div>
+    <div class="about-stat"><div class="about-stat-num">0</div><div class="about-stat-label">Commission earned from universities. Ever.</div></div>
+  </div>
+
+  <div class="cpsec">
+    <div class="cpst">Why Africa needs more world-class universities</div>
+    <p class="cpb">Africa has some of the world's fastest-growing student populations. Mauritius, Nigeria, Kenya, Ghana, South Africa , these countries produce brilliant, ambitious graduates who too often face a stark choice: leave for a world-class education, or stay and settle for less.</p>
+    <p class="cpb"><strong>That choice is changing , and Uniscope wants to accelerate the change.</strong> As more African students become sophisticated consumers of education , comparing costs, questioning value, demanding quality , universities worldwide are responding. Branch campuses are opening across the Middle East and Africa. Online degrees are becoming genuinely credible. Articulation agreements are multiplying.</p>
+    <p class="cpb">We believe in a virtuous cycle: <strong>the more informed African students become about their global options, the more universities will compete for them , and the more world-class educational infrastructure will ultimately be built on the continent.</strong> A student who chooses a CMU degree in Kigali over Pittsburgh sends a market signal that great African institutions can attract great universities. Uniscope is part of that signal.</p>
+    <div class="infobox"><strong>On brain drain:</strong> We want students to get the best possible qualification , wherever that takes them. But we also believe that smarter choices about cost and location mean more students can study closer to home, build networks in their region, and return with world-class credentials to build with. That is the outcome we are working toward.</div>
+  </div>
+
+  <div class="cpsec">
+    <div class="cpst">Our principles</div>
+    <div class="tgrid">
+      <div class="tcard"><div class="tcard-icon">🎯</div><div class="tcard-title" style="color:var(--ac)">Evidence over opinion</div><div class="tcard-body">Every data point is sourced, dated, and explained. Rankings, verified costs, accreditation records. Not marketing copy, not commission-driven advice.</div></div>
+      <div class="tcard"><div class="tcard-icon">🌍</div><div class="tcard-title" style="color:var(--ac)">Students first, always</div><div class="tcard-body">Uniscope is free for students. Always. Revenue comes from ethical advertising , never from steering students toward any particular institution.</div></div>
+      <div class="tcard"><div class="tcard-icon">💡</div><div class="tcard-title" style="color:var(--ac)">Radical transparency</div><div class="tcard-body">We tell you exactly where our data comes from and what you must verify yourself. The Data page is not a footnote , it is a core part of the product.</div></div>
+      <div class="tcard"><div class="tcard-icon">🏗️</div><div class="tcard-title" style="color:var(--ac)">Africa-first, globally minded</div><div class="tcard-body">We start in Africa because that is where the information gap is greatest and the opportunity is largest. Our ambition is global. Our focus is deliberate.</div></div>
+    </div>
+  </div>
+
+  <div class="cpsec">
+    <div class="cpst">About the founder</div>
+    <div class="about-hero" style="margin-bottom:0">
+      <div class="about-avatar">ME</div>
+      <div>
+        <div class="about-name">Dr Mark Edwards</div>
+        <div class="about-title">Founder · TNE Expert · Higher Education Strategist</div>
+        <div class="about-tags">
+          <span class="about-tag">PhD</span>
+          <span class="about-tag">15+ Years UK HE</span>
+          <span class="about-tag">Russell Group</span>
+          <span class="about-tag">TNE Specialist</span>
+          <span class="about-tag">Based in Mauritius 🇲🇺</span>
+        </div>
+        <p style="font-size:13px;color:var(--mt2);line-height:1.7;margin-top:12px">Fifteen years in UK elite higher education , working on international strategy, overseas campuses, and TNE development , gave me a front-row seat to how the global education market really works. I built Uniscope because I got tired of watching talented students make expensive, uninformed decisions. I know the system. I want students to know it too.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:10px;margin-top:8px">
+    <button class="sbtn" onclick="showPage('contact')">Get in Touch →</button>
+    <button class="cbtn cbt-s" style="padding:10px 18px;font-size:13px" onclick="showPage('search')">← Search Programmes</button>
+  </div>
+</div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div id="page-contact" class="page">
+<div class="cp">
+  <div class="cpey">Get in touch</div>
+  <h1 class="cptitle">Contact <span class="grad">Uniscope</span></h1>
+  <p class="cplead">Whether you're a student, a school, a university, or a journalist , we'd love to hear from you.</p>
+  <div class="contact-grid">
+    <div class="contact-card" id="cc-student" onclick="showForm('student')">
+      <div class="cc-icon">🎓</div>
+      <div class="cc-title">Student &amp; Family Enquiry</div>
+      <div class="cc-desc">Questions about programmes, costs, TNE, entry requirements, or getting personalised guidance on your options.</div>
+    </div>
+    <div class="contact-card" id="cc-school" onclick="showForm('school')">
+      <div class="cc-icon">🏫</div>
+      <div class="cc-title">School &amp; Counsellor Partnership</div>
+      <div class="cc-desc">Bringing Uniscope tools and guidance to your students across Africa and the Indian Ocean region.</div>
+    </div>
+    <div class="contact-card" id="cc-sponsor" onclick="showForm('sponsor')">
+      <div class="cc-icon">🏛</div>
+      <div class="cc-title">University &amp; Sponsor Enquiry</div>
+      <div class="cc-desc">Featured listings, data partnerships, or advertising. Reach an engaged audience of international students and families.</div>
+    </div>
+    <div class="contact-card" id="cc-media" onclick="showForm('media')">
+      <div class="cc-icon">📰</div>
+      <div class="cc-title">Media &amp; Press</div>
+      <div class="cc-desc">Dr Mark Edwards is available for comment on international HE, TNE, student mobility, and the new economics of university study.</div>
+    </div>
+  </div>
+  <div class="contact-form" id="form-student">
+    <div class="form-title">🎓 Student &amp; Family Enquiry</div>
+    <div class="form-grid">
+      <div class="form-field"><label>First name</label><input type="text" placeholder="Your first name"></div>
+      <div class="form-field"><label>Last name</label><input type="text" placeholder="Your last name"></div>
+      <div class="form-field"><label>Email</label><input type="email" placeholder="your@email.com"></div>
+      <div class="form-field"><label>Nearest city</label><select><option>Port Louis</option><option>Lagos</option><option>Abuja</option><option>Nairobi</option><option>Accra</option><option>Johannesburg</option><option>Cape Town</option><option>Other</option></select></div>
+      <div class="form-field"><label>Subject of interest</label><select><option>Business &amp; Management</option><option>Accountancy &amp; Finance</option><option>Engineering</option><option>Computer Science / IT / AI</option><option>Law</option><option>Medicine &amp; Health</option><option>Economics</option><option>Not sure yet</option></select></div>
+      <div class="form-field"><label>Study level</label><select><option>Undergraduate (UG)</option><option>Postgraduate (PGT)</option><option>Not sure</option></select></div>
+      <div class="form-field full"><label>Your message</label><textarea placeholder="Tell us about your situation, what you're looking for, and any questions you have..."></textarea></div>
+    </div>
+    <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
+  </div>
+  <div class="contact-form" id="form-school">
+    <div class="form-title">🏫 School &amp; Counsellor Partnership</div>
+    <div class="form-grid">
+      <div class="form-field"><label>Your name</label><input type="text" placeholder="Full name"></div>
+      <div class="form-field"><label>Role</label><input type="text" placeholder="e.g. Careers Counsellor"></div>
+      <div class="form-field"><label>School name</label><input type="text" placeholder="School or institution"></div>
+      <div class="form-field"><label>Country</label><select><option>Mauritius</option><option>Nigeria</option><option>Kenya</option><option>Ghana</option><option>South Africa</option><option>Other</option></select></div>
+      <div class="form-field"><label>Email</label><input type="email" placeholder="your@school.edu"></div>
+      <div class="form-field"><label>Approx. students</label><select><option>Under 100</option><option>100–500</option><option>500–1,000</option><option>1,000+</option></select></div>
+      <div class="form-field full"><label>What are you looking for?</label><textarea placeholder="How would you like to work with Uniscope?"></textarea></div>
+    </div>
+    <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
+  </div>
+  <div class="contact-form" id="form-sponsor">
+    <div class="form-title">🏛 University &amp; Sponsor Enquiry</div>
+    <div class="form-grid">
+      <div class="form-field"><label>Your name</label><input type="text" placeholder="Full name"></div>
+      <div class="form-field"><label>Institution</label><input type="text" placeholder="University or company name"></div>
+      <div class="form-field"><label>Email</label><input type="email" placeholder="your@institution.edu"></div>
+      <div class="form-field"><label>Enquiry type</label><select><option>Featured listing (In Focus)</option><option>Data partnership</option><option>Advertising</option><option>Counselling referral partnership</option><option>Other</option></select></div>
+      <div class="form-field full"><label>Tell us more</label><textarea placeholder="Describe your institution and what you're hoping to achieve through Uniscope..."></textarea></div>
+    </div>
+    <button class="form-submit" onclick="submitForm()">Send Enquiry →</button>
+  </div>
+  <div class="contact-form" id="form-media">
+    <div class="form-title">📰 Media &amp; Press</div>
+    <div class="form-grid">
+      <div class="form-field"><label>Your name</label><input type="text" placeholder="Full name"></div>
+      <div class="form-field"><label>Publication</label><input type="text" placeholder="e.g. Times Higher Education"></div>
+      <div class="form-field"><label>Email</label><input type="email" placeholder="your@publication.com"></div>
+      <div class="form-field"><label>Deadline</label><input type="text" placeholder="e.g. 3 days, no rush"></div>
+      <div class="form-field full"><label>What are you working on?</label><textarea placeholder="Brief description and what you'd like Dr Edwards to contribute..."></textarea></div>
+    </div>
+    <button class="form-submit" onclick="submitForm()">Send Request →</button>
+  </div>
+  <div class="contact-info">
+    <strong>Direct email:</strong> hello@uniscope.com<br>
+    All enquiries reviewed personally by Dr Mark Edwards. We aim to respond within 2 working days.<br><br>
+    <strong>Based in:</strong> Mauritius 🇲🇺 &nbsp;·&nbsp; <strong>Coverage:</strong> Global
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     EXPERT GUIDANCE PAGE
+══════════════════════════════════════ -->
+<div id="page-guidance" class="page">
+<div class="cp">
+  <div class="cpey">Expert Guidance Service</div>
+  <h1 class="cptitle">Navigate Your Options<br><span class="grad">With an Expert</span></h1>
+  <p class="cplead">Choosing the right degree, university, and study location is one of the most important financial decisions you will ever make. Get it right with personalised, independent guidance from someone who has spent 15 years inside the world's best universities.</p>
+
+  <div style="background:linear-gradient(135deg,rgba(0,212,170,0.07),rgba(77,166,255,0.04));border:1px solid rgba(0,212,170,0.25);border-radius:var(--r);padding:26px 28px;margin-bottom:28px;display:flex;gap:22px;align-items:flex-start;">
+    <div style="width:72px;height:72px;border-radius:50%;background:linear-gradient(135deg,var(--ac),var(--bl));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:26px;font-weight:800;color:#06080f;flex-shrink:0;">M</div>
+    <div>
+      <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:4px;">Mark Edwards</div>
+      <div style="font-size:13px;color:var(--ac);font-weight:600;margin-bottom:10px;">Independent Higher Education Consultant · British Council Qualified Agent</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px;">
+        <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--s3);border:1px solid var(--bd2);color:var(--mt2);">PhD · Durham</span>
+        <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--s3);border:1px solid var(--bd2);color:var(--mt2);">MA · Durham</span>
+        <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--s3);border:1px solid var(--bd2);color:var(--mt2);">MSc · Loughborough</span>
+        <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--s3);border:1px solid var(--bd2);color:var(--mt2);">BA First Class · Liverpool</span>
+        <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--s3);border:1px solid var(--bd2);color:var(--mt2);">Durham Doctoral Fellow</span>
+        <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--s3);border:1px solid var(--bd2);color:var(--mt2);">Worked at Bristol &amp; Glasgow</span>
+        <span style="padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;background:var(--s3);border:1px solid var(--bd2);color:var(--mt2);">Based in Mauritius 🇲🇺</span>
+      </div>
+      <p style="font-size:13px;color:var(--mt2);line-height:1.7;">I have studied at and worked within some of the UK's most prestigious institutions. I have spent 15 years consulting universities on international strategy, TNE, and student recruitment , and I now put that knowledge entirely at students' disposal. I am a British Council qualified agent, and I have successfully guided students through some of the most complex higher education decisions imaginable. I built Uniscope because I believe every student deserves access to the kind of guidance that was previously only available to those who could afford expensive agencies.</p>
+    </div>
+  </div>
+
+  <div class="cpsec">
+    <div class="cpst">What I can help you with</div>
+    <div class="tgrid">
+      <div class="tcard"><div class="tcard-icon">🌍</div><div class="tcard-title" style="color:var(--ac)">TNE &amp; Branch Campus Navigation</div><div class="tcard-body">Understanding which overseas campuses offer genuine quality, which to avoid, and how to assess whether a TNE programme is right for your career goals and financial situation.</div></div>
+      <div class="tcard"><div class="tcard-icon">💰</div><div class="tcard-title" style="color:var(--ac)">Best Value Degree Strategy</div><div class="tcard-body">Finding the highest-quality degree at the lowest sustainable cost , factoring in tuition, living, flights, visa, and the long-term career return on each option.</div></div>
+      <div class="tcard"><div class="tcard-icon">🎓</div><div class="tcard-title" style="color:var(--ac)">Course &amp; University Selection</div><div class="tcard-body">Cutting through rankings, marketing, and league tables to identify which institution and programme genuinely fits your academic background, ambitions, and circumstances.</div></div>
+      <div class="tcard"><div class="tcard-icon">📋</div><div class="tcard-title" style="color:var(--ac)">Applications &amp; Entry Requirements</div><div class="tcard-body">Understanding what universities are really looking for, how to position your application, what your grades mean in a global context, and whether a foundation pathway makes sense.</div></div>
+    </div>
+  </div>
+
+  <div class="cpsec">
+    <div class="cpst">Session options</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:8px;">
+      <div style="background:var(--s);border:2px solid var(--ac);border-radius:var(--r);padding:24px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ac);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Most popular</div>
+        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:4px;">30-Minute Introduction</div>
+        <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--ac);margin-bottom:10px;">£50</div>
+        <div style="font-size:13px;color:var(--mt2);line-height:1.65;margin-bottom:16px;">A focused 30-minute video or phone session with Mark. Bring your questions , on any TNE programme, university choice, cost comparison, entry requirements, or how to find the best value degree for your situation. You leave with clarity and a concrete next step.</div>
+        <ul style="font-size:12px;color:var(--mt2);line-height:1.8;padding-left:16px;margin-bottom:16px;">
+          <li>Personalised to your grades, budget and goals</li>
+          <li>Independent , no commission, no agenda</li>
+          <li>Conducted via video call or phone</li>
+          <li>Follow-up summary notes included</li>
+        </ul>
+        <button onclick="document.getElementById('guidance-form').scrollIntoView({behavior:'smooth'})" style="width:100%;padding:11px;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:var(--rs);color:#06080f;font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Book a Session →</button>
+      </div>
+      <div style="background:var(--s);border:1px solid var(--bd2);border-radius:var(--r);padding:24px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--tne);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">For complex situations</div>
+        <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;margin-bottom:4px;">Bespoke Support Package</div>
+        <div style="font-family:'Syne',sans-serif;font-size:28px;font-weight:800;color:var(--tne);margin-bottom:10px;">POA</div>
+        <div style="font-size:13px;color:var(--mt2);line-height:1.65;margin-bottom:16px;">For students who need sustained guidance through the full process , from initial shortlisting through to application, offer management, and pre-departure planning. Priced on a case-by-case basis depending on complexity and duration.</div>
+        <ul style="font-size:12px;color:var(--mt2);line-height:1.8;padding-left:16px;margin-bottom:16px;">
+          <li>Multiple sessions over weeks or months</li>
+          <li>Application review and strategy</li>
+          <li>Family briefings available</li>
+          <li>School and counsellor packages available</li>
+        </ul>
+        <button onclick="document.getElementById('guidance-form').scrollIntoView({behavior:'smooth'})" style="width:100%;padding:11px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--tne);font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Enquire →</button>
+      </div>
+    </div>
+    <div class="infobox"><strong>Fully independent:</strong> Mark does not receive commission from any university, agency, or institution. His only client is you. All guidance is based on your best interests , not what earns a referral fee.</div>
+  </div>
+
+  <div class="cpsec" id="guidance-form">
+    <div class="cpst">Book your session</div>
+    <div style="background:var(--s);border:1px solid var(--bd2);border-radius:var(--r);padding:26px;">
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:16px;">Session Enquiry Form</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px;">
+        <div class="form-field"><label>First name</label><input type="text" placeholder="Your first name"></div>
+        <div class="form-field"><label>Last name</label><input type="text" placeholder="Your last name"></div>
+        <div class="form-field"><label>Email address</label><input type="email" placeholder="your@email.com"></div>
+        <div class="form-field"><label>Your city / country</label><input type="text" placeholder="e.g. Lagos, Nigeria"></div>
+        <div class="form-field"><label>Session type</label>
+          <select style="padding:9px 12px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--tx);font-size:13px;font-family:'Outfit',sans-serif;outline:none;appearance:none;">
+            <option>30-minute introduction (£50)</option>
+            <option>Bespoke support package (POA)</option>
+            <option>Not sure , please advise</option>
+          </select>
+        </div>
+        <div class="form-field"><label>Current qualification level</label>
+          <select style="padding:9px 12px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--tx);font-size:13px;font-family:'Outfit',sans-serif;outline:none;appearance:none;">
+            <option>A-Levels / HSC (applying for UG)</option>
+            <option>IB Diploma (applying for UG)</option>
+            <option>Bachelor's degree (applying for PGT)</option>
+            <option>Other</option>
+          </select>
+        </div>
+        <div class="form-field" style="grid-column:1/-1"><label>What would you like help with?</label>
+          <textarea style="width:100%;padding:9px 12px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--tx);font-size:13px;font-family:'Outfit',sans-serif;outline:none;resize:vertical;min-height:90px;" placeholder="Tell Mark about your situation , what subjects you're interested in, what stage you're at, what's confusing you, or what you're trying to decide between..."></textarea>
+        </div>
+      </div>
+      <button onclick="toast2('✓ Enquiry received , Mark will be in touch within 2 working days to confirm your session.');this.textContent='Sent ✓';" style="width:100%;padding:11px;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:var(--rs);color:#06080f;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Send Enquiry →</button>
+      <p style="font-size:11px;color:var(--mt);margin-top:10px;text-align:center;">Payment details will be confirmed by email after booking. Sessions conducted via video call or phone.</p>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SPOTLIGHTS PAGE
+══════════════════════════════════════ -->
+<div id="page-spotlights" class="page">
+<div class="cp" style="max-width:1100px;">
+  <div class="cpey">Featured Institutions</div>
+  <h1 class="cptitle">University <span class="grad">Spotlights</span></h1>
+  <p class="cplead">In-depth features on universities and programmes that offer exceptional value and quality for international students. Spotlights are paid placements , always clearly labelled , selected only for institutions Uniscope would genuinely recommend.</p>
+  <div class="infobox" style="margin-bottom:28px;"><strong>Editorial standard:</strong> Uniscope only accepts spotlight placements from institutions we consider genuinely strong options for our audience. A sponsored label does not mean uncritical promotion , all facts are independently verified. <span style="color:var(--ac);cursor:pointer" onclick="showPage('services')">Interested in a spotlight? →</span></div>
+
+  <div style="display:flex;flex-direction:column;gap:24px;">
+
+    <div style="background:var(--s);border:1px solid rgba(245,200,66,0.3);border-radius:var(--r);overflow:hidden;">
+      <div style="background:linear-gradient(135deg,rgba(0,51,102,0.4),rgba(0,51,102,0.2));padding:24px 26px;display:flex;align-items:flex-start;gap:18px;">
+        <div style="width:56px;height:56px;border-radius:12px;background:rgba(0,51,102,0.6);display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:24px;font-weight:800;color:#7eb4e8;flex-shrink:0;">B</div>
+        <div style="flex:1;">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
+            <div style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;">University of Birmingham Dubai</div>
+            <span style="background:rgba(245,200,66,0.15);border:1px solid rgba(245,200,66,0.3);color:var(--go);font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;text-transform:uppercase;letter-spacing:0.08em;">Spotlight</span>
+          </div>
+          <div style="font-size:13px;color:var(--tne);font-weight:600;margin-bottom:6px;">Branch Campus · Dubai International Academic City · Est. 2008</div>
+          <div style="display:flex;gap:8px;flex-wrap:wrap;">
+            <span style="font-size:11px;color:var(--mt2);background:var(--s3);padding:2px 8px;border-radius:10px;border:1px solid var(--bd);">🇦🇪 Dubai, UAE</span>
+            <span style="font-size:11px;color:var(--go);background:rgba(245,200,66,0.08);padding:2px 8px;border-radius:10px;border:1px solid rgba(245,200,66,0.2);">QS #101 World</span>
+            <span style="font-size:11px;color:var(--ac);background:var(--acg);padding:2px 8px;border-radius:10px;border:1px solid rgba(0,212,170,0.2);">Russell Group Quality</span>
+          </div>
+        </div>
+      </div>
+      <div style="padding:22px 26px;">
+        <p style="font-size:14px;color:var(--mt2);line-height:1.75;margin-bottom:18px;">The University of Birmingham's Dubai campus has been operating since 2008 and awards degrees that are legally and academically identical to those awarded at the Birmingham UK home campus. It operates under the same academic regulations, uses the same curricula and assessment frameworks, and is staffed by Birmingham-appointed faculty. For students from Mauritius, Nigeria, Ghana, Kenya and across Africa, it represents one of the most compelling propositions in global higher education: a genuine Russell Group degree, delivered in a world-class city, with direct flight connections from across the continent, at significantly lower cost than studying in the UK.</p>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:18px;">
+          <div style="background:var(--s2);border-radius:9px;padding:13px;border:1px solid var(--bd);text-align:center;">
+            <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--ac);">$19,500</div>
+            <div style="font-size:10px;color:var(--mt);margin-top:2px;">PGT tuition/yr</div>
+          </div>
+          <div style="background:var(--s2);border-radius:9px;padding:13px;border:1px solid var(--bd);text-align:center;">
+            <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--go);">#101</div>
+            <div style="font-size:10px;color:var(--mt);margin-top:2px;">QS World Rank</div>
+          </div>
+          <div style="background:var(--s2);border-radius:9px;padding:13px;border:1px solid var(--bd);text-align:center;">
+            <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--sg);">~$12k</div>
+            <div style="font-size:10px;color:var(--mt);margin-top:2px;">Saving vs UK/yr</div>
+          </div>
+          <div style="background:var(--s2);border-radius:9px;padding:13px;border:1px solid var(--bd);text-align:center;">
+            <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:var(--bl);">Direct</div>
+            <div style="font-size:10px;color:var(--mt);margin-top:2px;">Flights from MRU/LOS</div>
+          </div>
+        </div>
+        <div style="margin-bottom:16px;">
+          <div style="font-size:11px;font-weight:600;color:var(--mt);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:8px;font-family:'JetBrains Mono',monospace;">Available programmes</div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;">
+            <span style="padding:4px 11px;border-radius:20px;font-size:12px;background:rgba(0,212,170,0.08);color:var(--ac);border:1px solid rgba(0,212,170,0.2);">MBA</span>
+            <span style="padding:4px 11px;border-radius:20px;font-size:12px;background:rgba(0,212,170,0.08);color:var(--ac);border:1px solid rgba(0,212,170,0.2);">MSc Management</span>
+            <span style="padding:4px 11px;border-radius:20px;font-size:12px;background:rgba(0,212,170,0.08);color:var(--ac);border:1px solid rgba(0,212,170,0.2);">MSc Finance</span>
+            <span style="padding:4px 11px;border-radius:20px;font-size:12px;background:rgba(0,212,170,0.08);color:var(--ac);border:1px solid rgba(0,212,170,0.2);">BEng Engineering</span>
+            <span style="padding:4px 11px;border-radius:20px;font-size:12px;background:rgba(0,212,170,0.08);color:var(--ac);border:1px solid rgba(0,212,170,0.2);">BSc Computer Science</span>
+          </div>
+        </div>
+        <div style="display:flex;gap:8px;">
+          <button onclick="showPage('search')" style="padding:9px 20px;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:var(--rs);color:#06080f;font-size:13px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Search Birmingham Dubai →</button>
+          <button onclick="showPage('guidance')" style="padding:9px 20px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--mt2);font-size:13px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;">Get Expert Advice</button>
+        </div>
+      </div>
+    </div>
+
+    <div style="background:var(--s2);border:2px dashed var(--bd2);border-radius:var(--r);padding:32px;text-align:center;">
+      <div style="font-size:32px;margin-bottom:12px;">🏛</div>
+      <div style="font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--mt2);margin-bottom:8px;">Your institution here</div>
+      <div style="font-size:13px;color:var(--mt);line-height:1.6;max-width:500px;margin:0 auto 18px;">Uniscope reaches thousands of qualified international students actively researching their next degree. A spotlight gives your institution a detailed, credible, editorially-presented feature to the most engaged audience in international HE search.</div>
+      <button onclick="showPage('services')" style="padding:10px 24px;background:var(--s3);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--ac);font-size:13px;font-weight:600;cursor:pointer;font-family:'Syne',sans-serif;">Enquire about a Spotlight →</button>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<!-- ══════════════════════════════════════
+     SERVICES PAGE
+══════════════════════════════════════ -->
+<div id="page-services" class="page">
+<div class="cp">
+  <div class="cpey">Work with Uniscope</div>
+  <h1 class="cptitle">Services &amp; <span class="grad">Partnerships</span></h1>
+  <p class="cplead">Uniscope is always free for students. Our commercial relationships are with institutions, partners, and sponsors who want to reach the most engaged international student audience in the market.</p>
+
+  <div class="cpsec">
+    <div class="cpst">For universities &amp; institutions</div>
+    <div class="tgrid">
+      <div class="tcard">
+        <div class="tcard-icon">✨</div>
+        <div class="tcard-title" style="color:var(--go);">University Spotlight</div>
+        <div class="tcard-body">A full editorial feature on the Spotlights page , in-depth coverage of your campus, programmes, costs, and value proposition. Editorially produced, independently verified, and clearly labelled as a paid placement.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--mt);">Ideal for: Branch campuses, TNE providers, institutions targeting African student markets</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">📌</div>
+        <div class="tcard-title" style="color:var(--go);">Featured Course Listing</div>
+        <div class="tcard-body">A prominent sponsored card in the Featured Programmes section on the search homepage. Seen by every visitor to Uniscope. Direct link to your application or information page.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--mt);">Ideal for: Specific programme promotions, open days, application deadlines</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">📬</div>
+        <div class="tcard-title" style="color:var(--go);">Newsletter Feature</div>
+        <div class="tcard-body">A featured slot in the Uniscope Weekly newsletter, sent to subscribers who have actively opted in to receive updates on global HE opportunities. Highly targeted, high-intent audience.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--mt);">Ideal for: Programme launches, scholarship announcements, open days</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">🤝</div>
+        <div class="tcard-title" style="color:var(--go);">Data &amp; Research Partnership</div>
+        <div class="tcard-body">Work with Uniscope to keep your programme data current and accurately represented across the platform. Includes verified listing, regular data updates, and priority placement in relevant search results.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--mt);">Ideal for: Universities wanting to maintain accurate, prominent listings</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpsec">
+    <div class="cpst">For schools &amp; counsellors</div>
+    <div class="tgrid">
+      <div class="tcard">
+        <div class="tcard-icon">🏫</div>
+        <div class="tcard-title" style="color:var(--tne);">School Partnership Programme</div>
+        <div class="tcard-body">Bring Uniscope's tools, data, and expert guidance to your students. We work with schools across Africa and the Indian Ocean region to provide unbiased, evidence-based university guidance.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--mt);">Includes: Bulk student access, counsellor briefings, co-branded resources</div>
+      </div>
+      <div class="tcard">
+        <div class="tcard-icon">📚</div>
+        <div class="tcard-title" style="color:var(--tne);">Counsellor Training &amp; CPD</div>
+        <div class="tcard-body">Drawing on Mark's 15+ years in UK HE and TNE expertise, we offer training sessions and CPD workshops for school counsellors on navigating the global HE landscape , particularly TNE, articulation, and cost-effective pathways.</div>
+        <div style="margin-top:10px;font-size:11px;color:var(--mt);">Delivered online or in-person in Mauritius and regionally</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="cpsec">
+    <div class="cpst">Get in touch</div>
+    <div style="background:var(--s);border:1px solid var(--bd2);border-radius:var(--r);padding:26px;">
+      <div style="font-family:'Syne',sans-serif;font-size:16px;font-weight:700;margin-bottom:5px;">Commercial &amp; Partnership Enquiry</div>
+      <div style="font-size:13px;color:var(--mt);margin-bottom:18px;">All enquiries reviewed personally by Mark. We respond within 2 working days.</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:11px;margin-bottom:11px;">
+        <div class="form-field"><label>Your name</label><input type="text" placeholder="Full name"></div>
+        <div class="form-field"><label>Institution / organisation</label><input type="text" placeholder="University, school, or company"></div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="your@institution.edu"></div>
+        <div class="form-field"><label>Service of interest</label>
+          <select style="padding:9px 12px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--tx);font-size:13px;font-family:'Outfit',sans-serif;outline:none;appearance:none;">
+            <option>University Spotlight</option>
+            <option>Featured Course Listing</option>
+            <option>Newsletter Feature</option>
+            <option>Data &amp; Research Partnership</option>
+            <option>School Partnership Programme</option>
+            <option>Counsellor Training &amp; CPD</option>
+            <option>Other / not sure</option>
+          </select>
+        </div>
+        <div class="form-field" style="grid-column:1/-1"><label>Tell us more</label>
+          <textarea style="width:100%;padding:9px 12px;background:var(--s2);border:1px solid var(--bd2);border-radius:var(--rs);color:var(--tx);font-size:13px;font-family:'Outfit',sans-serif;outline:none;resize:vertical;min-height:80px;" placeholder="Describe your institution, target markets, and what you're hoping to achieve..."></textarea>
+        </div>
+      </div>
+      <button onclick="toast2('✓ Enquiry received , Mark will be in touch within 2 working days.');this.textContent='Sent ✓';" style="width:100%;padding:11px;background:linear-gradient(135deg,var(--ac),var(--ac2));border:none;border-radius:var(--rs);color:#06080f;font-size:14px;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;">Send Enquiry →</button>
+    </div>
+  </div>
+
+  <div class="contact-info">
+    <strong>Direct email:</strong> hello@uniscope.com &nbsp;·&nbsp; <strong>Based in:</strong> Mauritius 🇲🇺 &nbsp;·&nbsp; <strong>Response time:</strong> Within 2 working days
+  </div>
+</div>
+</div>
+
+<!-- COMPARISON TRAY -->
+<div class="cmp-tray" id="cmp-tray">
+  <div class="cmp-tray-header">
+    <div class="cmp-tray-title">📊 Comparing <span id="cmp-count">0</span> programmes <span style="font-size:11px;color:var(--mt);font-weight:400">(max 4)</span></div>
+    <div class="cmp-tray-actions">
+      <button onclick="clearComparison()" style="padding:5px 12px;background:none;border:1px solid var(--bd2);border-radius:var(--rs);color:var(--mt);font-size:12px;cursor:pointer;font-family:'Outfit',sans-serif;">Clear all</button>
+      <button onclick="closeCmpTray()" style="padding:5px 12px;background:none;border:1px solid var(--bd2);border-radius:var(--rs);color:var(--mt);font-size:12px;cursor:pointer;font-family:'Outfit',sans-serif;">✕ Close</button>
+    </div>
+  </div>
+  <div class="cmp-tray-body">
+    <table class="cmp-table" id="cmp-table">
+      <thead>
+        <tr>
+          <th>University / Programme</th>
+          <th>Level</th>
+          <th>Location</th>
+          <th>QS World</th>
+          <th>QS Subject</th>
+          <th>Annual Cost (USD)</th>
+          <th>Entry (A-Level)</th>
+          <th>Entry (IB)</th>
+          <th>Duration</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody id="cmp-tbody"></tbody>
+    </table>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="movl" id="dmodal"><div class="modal" id="mbody"></div></div>
+<div class="toast" id="toast"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+const MUR=46.5;
+
+// Region → country map (simplified)
+const RC={
+  "Africa":["Mauritius","Rwanda","Kenya","Tanzania","Uganda","Ethiopia","Nigeria","Ghana","South Africa","Egypt","Morocco"],
+  "Middle East":["UAE","Qatar","Saudi Arabia","Jordan"],
+  "Europe":["United Kingdom","France","Germany","Netherlands","Spain","Ireland","Belgium","Switzerland","Austria","Czech Republic","Poland"],
+  "North America":["USA","Canada"],
+  "Asia-Pacific":["Malaysia","Singapore","Australia","New Zealand","China","Japan","South Korea","India","Hong Kong"],
+  "Online Only":["Online"]
+};
+
+// Country → region map
+const CO2REG={
+  "United Kingdom":"Europe","France":"Europe","Germany":"Europe","Netherlands":"Europe","Spain":"Europe","Ireland":"Europe","Belgium":"Europe","Switzerland":"Europe","Austria":"Europe","Czech Republic":"Europe","Poland":"Europe",
+  "USA":"North America","Canada":"North America",
+  "Australia":"Asia-Pacific","New Zealand":"Asia-Pacific","Malaysia":"Asia-Pacific","Singapore":"Asia-Pacific","China":"Asia-Pacific","Japan":"Asia-Pacific","South Korea":"Asia-Pacific","India":"Asia-Pacific","Hong Kong":"Asia-Pacific",
+  "UAE":"Middle East","Qatar":"Middle East","Saudi Arabia":"Middle East","Jordan":"Middle East",
+  "Mauritius":"Africa","Rwanda":"Africa","Kenya":"Africa","Nigeria":"Africa","Ghana":"Africa","South Africa":"Africa","Egypt":"Africa","Morocco":"Africa","Tanzania":"Africa","Uganda":"Africa","Ethiopia":"Africa",
+  "Online":"Online Only"
+};
+
+// Quick filter map
+const QF2CO={"uk":"United Kingdom","us":"USA","ca":"Canada","au":"Australia","ae":"UAE"};
+
+// City → flight times to destination countries (hours)
+const CITY_FLIGHTS={
+  "Port Louis":{UK:12,France:11,UAE:6,SouthAfrica:4,Rwanda:5,Australia:14,Canada:18,USA:20,Malaysia:12,Netherlands:12},
+  "Lagos":{UK:6,France:6,UAE:6,SouthAfrica:5,Rwanda:5,Australia:18,Canada:14,USA:12,Malaysia:15,Netherlands:6},
+  "Abuja":{UK:7,France:7,UAE:7,SouthAfrica:6,Rwanda:5,Australia:19,Canada:15,USA:13,Malaysia:15,Netherlands:7},
+  "Kano":{UK:7,France:7,UAE:7,SouthAfrica:7,Rwanda:6,Australia:20,Canada:16,USA:14,Malaysia:16,Netherlands:7},
+  "Port Harcourt":{UK:7,France:7,UAE:7,SouthAfrica:6,Rwanda:5,Australia:18,Canada:15,USA:12,Malaysia:15,Netherlands:7},
+  "Enugu":{UK:7,France:7,UAE:7,SouthAfrica:6,Rwanda:5,Australia:18,Canada:15,USA:13,Malaysia:15,Netherlands:7},
+  "Nairobi":{UK:9,France:10,UAE:5,SouthAfrica:4,Rwanda:1.5,Australia:13,Canada:16,USA:17,Malaysia:10,Netherlands:9},
+  "Mombasa":{UK:10,France:10,UAE:5,SouthAfrica:4,Rwanda:2,Australia:14,Canada:17,USA:17,Malaysia:11,Netherlands:10},
+  "Kisumu":{UK:10,France:11,UAE:6,SouthAfrica:5,Rwanda:2,Australia:14,Canada:17,USA:18,Malaysia:11,Netherlands:10},
+  "Accra":{UK:7,France:6,UAE:8,SouthAfrica:8,Rwanda:6,Australia:19,Canada:14,USA:10,Malaysia:16,Netherlands:6},
+  "Kumasi":{UK:7,France:7,UAE:8,SouthAfrica:8,Rwanda:6,Australia:19,Canada:14,USA:10,Malaysia:16,Netherlands:7},
+  "Tamale":{UK:8,France:8,UAE:9,SouthAfrica:9,Rwanda:7,Australia:20,Canada:15,USA:11,Malaysia:17,Netherlands:8},
+  "Johannesburg":{UK:11,France:11,UAE:8,SouthAfrica:0,Rwanda:6,Australia:12,Canada:18,USA:16,Malaysia:12,Netherlands:11},
+  "Cape Town":{UK:12,France:12,UAE:9,SouthAfrica:0,Rwanda:7,Australia:13,Canada:19,USA:17,Malaysia:13,Netherlands:12},
+  "Durban":{UK:12,France:12,UAE:9,SouthAfrica:0,Rwanda:6,Australia:13,Canada:19,USA:17,Malaysia:13,Netherlands:12},
+  "Pretoria":{UK:11,France:11,UAE:8,SouthAfrica:0,Rwanda:6,Australia:12,Canada:18,USA:16,Malaysia:12,Netherlands:11}
+};
+
+// Country → flight key for lookup
+const CO2FLTKEY={
+  "United Kingdom":"UK","France":"France","Netherlands":"Netherlands","Germany":"UK","Spain":"UK","Ireland":"UK","Belgium":"UK","Switzerland":"UK","Austria":"UK","Czech Republic":"UK","Poland":"UK",
+  "USA":"USA","Canada":"Canada",
+  "Australia":"Australia","New Zealand":"Australia","Malaysia":"Malaysia","Singapore":"Malaysia","India":"Malaysia","China":"Malaysia","Japan":"Malaysia","South Korea":"Malaysia","Hong Kong":"Malaysia",
+  "UAE":"UAE","Qatar":"UAE","Saudi Arabia":"UAE","Jordan":"UAE",
+  "Mauritius":"SouthAfrica","Rwanda":"Rwanda","Kenya":"Nairobi","Nigeria":"Lagos","Ghana":"Accra","South Africa":"SouthAfrica","Egypt":"UAE","Morocco":"France"
+};
+
+function getFlightTime(city, country){
+  const cityData=CITY_FLIGHTS[city];
+  if(!cityData||country==="Online")return null;
+  const key=CO2FLTKEY[country];
+  if(!key)return null;
+  const hrs=cityData[key];
+  if(!hrs)return null;
+  if(hrs===0)return"Local";
+  return`~${hrs}h`;
+}
+
+// PROGRAMMES
+const P=[
+{id:1,uni:"University of Birmingham",pg:"MBA / MSc Management",disc:"Business",lev:"PGT",dy:1,lang:"English",type:"Home",co:"United Kingdom",fl:"🇬🇧",lo:"B",lc:"#003366",lb:"rgba(0,51,102,0.15)",qw:101,qs:51,fee:28000,liv:14000,vis:490,saf:"green",sc:78,ss:88,sh:85,al:"ABB",ib:34,ielts:6.5,path:true,del:"Full-time",note:"Russell Group. Strong global business network."},
+{id:2,uni:"University of Birmingham Dubai",pg:"MBA / MSc Management",disc:"Business",lev:"PGT",dy:1,lang:"English",type:"TNE",co:"UAE",fl:"🇦🇪",lo:"B",lc:"#003366",lb:"rgba(0,51,102,0.15)",qw:101,qs:51,fee:19500,liv:18000,vis:300,saf:"green",sc:82,ss:85,sh:88,al:"ABB",ib:34,ielts:6.5,path:false,del:"Full-time",note:"Same UK degree, Dubai delivery. Ideal for African & island students."},
+{id:3,uni:"Université Paris-Dauphine",pg:"Master en Management",disc:"Business",lev:"PGT",dy:2,lang:"French",type:"Home",co:"France",fl:"🇫🇷",lo:"P",lc:"#003087",lb:"rgba(0,48,135,0.15)",qw:290,qs:101,fee:4800,liv:16000,vis:100,saf:"green",sc:65,ss:80,sh:88,al:"BBB",ib:32,ielts:null,path:true,del:"Full-time",note:"Top French grande école. Taught entirely in French."},
+{id:4,uni:"Heriot-Watt University Dubai",pg:"MSc International Business",disc:"Business",lev:"PGT",dy:1,lang:"English",type:"TNE",co:"UAE",fl:"🇦🇪",lo:"H",lc:"#006938",lb:"rgba(0,105,56,0.15)",qw:350,qs:201,fee:13500,liv:18000,vis:300,saf:"green",sc:82,ss:85,sh:88,al:"BCC",ib:30,ielts:6.0,path:true,del:"Full-time",note:"UK degree, Dubai campus. Affordable and well-established TNE."},
+{id:5,uni:"University of Cape Town",pg:"MBA",disc:"Business",lev:"PGT",dy:2,lang:"English",type:"Home",co:"South Africa",fl:"🇿🇦",lo:"C",lc:"#003B5C",lb:"rgba(0,59,92,0.15)",qw:233,qs:101,fee:16000,liv:7500,vis:50,saf:"amber",sc:42,ss:70,sh:72,al:"ABB",ib:33,ielts:6.5,path:false,del:"Full-time",note:"#1 in Africa. Strong regional alumni network."},
+{id:6,uni:"University of London Worldwide",pg:"BSc Business & Management",disc:"Business",lev:"UG",dy:3,lang:"English",type:"Online",co:"Online",fl:"🌐",lo:"L",lc:"#8B0000",lb:"rgba(139,0,0,0.12)",qw:350,qs:151,fee:7200,liv:0,vis:0,saf:"green",sc:95,ss:95,sh:95,al:"CCC",ib:28,ielts:6.0,path:true,del:"Online",note:"UK degree. Study from anywhere , no relocation required."},
+{id:7,uni:"University of Glasgow",pg:"BSc Accountancy",disc:"Accountancy",lev:"UG",dy:4,lang:"English",type:"Home",co:"United Kingdom",fl:"🇬🇧",lo:"G",lc:"#003865",lb:"rgba(0,56,101,0.15)",qw:76,qs:40,fee:26000,liv:12000,vis:490,saf:"green",sc:76,ss:88,sh:85,al:"ABB",ib:34,ielts:6.5,path:true,del:"Full-time",note:"Russell Group. ICAS/ICAEW accredited. Strong graduate employability."},
+{id:8,uni:"Heriot-Watt Malaysia",pg:"BSc Accountancy & Finance",disc:"Accountancy",lev:"UG",dy:4,lang:"English",type:"TNE",co:"Malaysia",fl:"🇲🇾",lo:"H",lc:"#006938",lb:"rgba(0,105,56,0.15)",qw:350,qs:150,fee:9000,liv:6000,vis:80,saf:"green",sc:74,ss:80,sh:78,al:"BCC",ib:28,ielts:6.0,path:true,del:"Full-time",note:"UK degree, Malaysia delivery. ACCA accredited. Excellent value."},
+{id:9,uni:"University of Toronto",pg:"BCom Accounting",disc:"Accountancy",lev:"UG",dy:4,lang:"English",type:"Home",co:"Canada",fl:"🇨🇦",lo:"T",lc:"#00204E",lb:"rgba(0,32,78,0.15)",qw:21,qs:20,fee:38000,liv:14000,vis:150,saf:"green",sc:80,ss:90,sh:88,al:"AAA",ib:37,ielts:6.5,path:true,del:"Full-time",note:"World Top 25. CPA Canada pathway. Strong placement record."},
+{id:10,uni:"ACCA Online",pg:"ACCA Professional Qualification",disc:"Accountancy",lev:"PGT",dy:2,lang:"English",type:"Online",co:"Online",fl:"🌐",lo:"A",lc:"#7B2D8B",lb:"rgba(123,45,139,0.12)",qw:null,qs:null,fee:3500,liv:0,vis:0,saf:"green",sc:95,ss:95,sh:95,al:"CCC",ib:24,ielts:6.0,path:true,del:"Online",note:"Global gold standard in accountancy. Recognised in 180+ countries."},
+{id:11,uni:"Imperial College London",pg:"MEng Engineering",disc:"Engineering",lev:"UG",dy:4,lang:"English",type:"Home",co:"United Kingdom",fl:"🇬🇧",lo:"I",lc:"#003E74",lb:"rgba(0,62,116,0.15)",qw:6,qs:3,fee:41000,liv:18000,vis:490,saf:"green",sc:72,ss:88,sh:85,al:"A*AA",ib:39,ielts:7.0,path:false,del:"Full-time",note:"World Top 10. No pathway. Exceptional career outcomes."},
+{id:12,uni:"University of Melbourne",pg:"Master of Engineering",disc:"Engineering",lev:"PGT",dy:2,lang:"English",type:"Home",co:"Australia",fl:"🇦🇺",lo:"M",lc:"#003087",lb:"rgba(0,48,135,0.15)",qw:14,qs:8,fee:36000,liv:18000,vis:630,saf:"green",sc:74,ss:88,sh:86,al:"AAA",ib:38,ielts:6.5,path:false,del:"Full-time",note:"World Top 15. Engineers Australia accredited. Strong industry links."},
+{id:13,uni:"Manipal University Dubai",pg:"BEng Mechanical Engineering",disc:"Engineering",lev:"UG",dy:4,lang:"English",type:"TNE",co:"UAE",fl:"🇦🇪",lo:"M",lc:"#C83329",lb:"rgba(200,51,41,0.12)",qw:751,qs:401,fee:9500,liv:18000,vis:300,saf:"green",sc:82,ss:85,sh:88,al:"BCC",ib:29,ielts:6.0,path:true,del:"Full-time",note:"Indian accredited degree, Dubai campus. Lower tuition entry point."},
+{id:14,uni:"University of Johannesburg",pg:"BEng Electrical Engineering",disc:"Engineering",lev:"UG",dy:4,lang:"English",type:"Home",co:"South Africa",fl:"🇿🇦",lo:"J",lc:"#006DB7",lb:"rgba(0,109,183,0.12)",qw:501,qs:301,fee:4800,liv:6500,vis:50,saf:"amber",sc:40,ss:65,sh:68,al:"BCC",ib:29,ielts:6.0,path:true,del:"Full-time",note:"Very affordable. Strong African engineering network."},
+{id:15,uni:"University of Edinburgh",pg:"BSc Computer Science",disc:"Computer Science",lev:"UG",dy:4,lang:"English",type:"Home",co:"United Kingdom",fl:"🇬🇧",lo:"E",lc:"#00325F",lb:"rgba(0,50,95,0.15)",qw:22,qs:14,fee:30000,liv:13500,vis:490,saf:"green",sc:78,ss:88,sh:86,al:"AAA",ib:37,ielts:6.5,path:false,del:"Full-time",note:"World Top 25 CS. Strong AI & ML research hub."},
+{id:16,uni:"Carnegie Mellon Africa",pg:"MSc Information Technology",disc:"Computer Science",lev:"PGT",dy:2,lang:"English",type:"TNE",co:"Rwanda",fl:"🇷🇼",lo:"C",lc:"#C41230",lb:"rgba(196,18,48,0.12)",qw:53,qs:11,fee:28000,liv:7000,vis:60,saf:"green",sc:80,ss:82,sh:70,al:"AAB",ib:35,ielts:7.0,path:false,del:"Full-time",note:"CMU degree on the African continent. World Top 5 CS programme."},
+{id:17,uni:"University of Wollongong Dubai",pg:"BSc Computer Science",disc:"Computer Science",lev:"UG",dy:3,lang:"English",type:"TNE",co:"UAE",fl:"🇦🇪",lo:"W",lc:"#003DA5",lb:"rgba(0,61,165,0.12)",qw:650,qs:351,fee:10500,liv:18000,vis:300,saf:"green",sc:82,ss:85,sh:88,al:"BCC",ib:28,ielts:6.0,path:true,del:"Full-time",note:"Australian accredited degree, Dubai delivery. Established 1993."},
+{id:18,uni:"University of the People",pg:"BSc Computer Science",disc:"Computer Science",lev:"UG",dy:4,lang:"English",type:"Online",co:"Online",fl:"🌐",lo:"U",lc:"#2D6A4F",lb:"rgba(45,106,79,0.12)",qw:null,qs:null,fee:2400,liv:0,vis:0,saf:"green",sc:95,ss:95,sh:95,al:"CCC",ib:26,ielts:5.5,path:true,del:"Online",note:"US accredited. Lowest-cost global CS degree option."},
+{id:19,uni:"University of London (Laws)",pg:"LLB Law",disc:"Law",lev:"UG",dy:3,lang:"English",type:"Online",co:"Online",fl:"🌐",lo:"L",lc:"#8B0000",lb:"rgba(139,0,0,0.12)",qw:350,qs:80,fee:8500,liv:0,vis:0,saf:"green",sc:95,ss:95,sh:95,al:"BBB",ib:30,ielts:6.5,path:true,del:"Online",note:"The oldest external law programme in the world. Globally recognised LLB."},
+{id:20,uni:"University of Melbourne",pg:"JD Juris Doctor",disc:"Law",lev:"PGT",dy:3,lang:"English",type:"Home",co:"Australia",fl:"🇦🇺",lo:"M",lc:"#003087",lb:"rgba(0,48,135,0.15)",qw:14,qs:5,fee:42000,liv:18000,vis:630,saf:"green",sc:74,ss:88,sh:86,al:"AAA",ib:40,ielts:7.0,path:false,del:"Full-time",note:"World Top 5 Law. Leading Australasian JD programme."},
+{id:21,uni:"University of Ottawa",pg:"LLB / JD Law",disc:"Law",lev:"UG",dy:3,lang:"English",type:"Home",co:"Canada",fl:"🇨🇦",lo:"O",lc:"#8B0000",lb:"rgba(139,0,0,0.12)",qw:301,qs:90,fee:22000,liv:12000,vis:150,saf:"green",sc:80,ss:90,sh:88,al:"AAB",ib:35,ielts:7.0,path:false,del:"Full-time",note:"Canada's bilingual law school. Common law + civil law streams."},
+{id:22,uni:"University of Cape Town",pg:"MBChB Medicine",disc:"Medicine",lev:"UG",dy:6,lang:"English",type:"Home",co:"South Africa",fl:"🇿🇦",lo:"C",lc:"#003B5C",lb:"rgba(0,59,92,0.15)",qw:233,qs:51,fee:12000,liv:7500,vis:50,saf:"amber",sc:42,ss:70,sh:72,al:"A*AA",ib:38,ielts:7.0,path:false,del:"Full-time",note:"#1 medical school in Africa. Globally respected MBChB."},
+{id:23,uni:"University of Manchester",pg:"MBChB Medicine",disc:"Medicine",lev:"UG",dy:5,lang:"English",type:"Home",co:"United Kingdom",fl:"🇬🇧",lo:"M",lc:"#660099",lb:"rgba(102,0,153,0.12)",qw:32,qs:22,fee:38000,liv:13000,vis:490,saf:"green",sc:68,ss:85,sh:83,al:"A*AA",ib:38,ielts:7.0,path:false,del:"Full-time",note:"Russell Group. One of UK's largest medical schools."},
+{id:24,uni:"London School of Economics",pg:"BSc Economics",disc:"Economics",lev:"UG",dy:3,lang:"English",type:"Home",co:"United Kingdom",fl:"🇬🇧",lo:"L",lc:"#8B0000",lb:"rgba(139,0,0,0.12)",qw:45,qs:2,fee:29000,liv:18000,vis:490,saf:"green",sc:72,ss:88,sh:85,al:"A*AA",ib:38,ielts:7.0,path:false,del:"Full-time",note:"World #2 Economics. The gold standard for economics graduates."},
+{id:25,uni:"University of Toronto",pg:"BA Economics",disc:"Economics",lev:"UG",dy:4,lang:"English",type:"Home",co:"Canada",fl:"🇨🇦",lo:"T",lc:"#00204E",lb:"rgba(0,32,78,0.15)",qw:21,qs:12,fee:36000,liv:14000,vis:150,saf:"green",sc:80,ss:90,sh:88,al:"AAA",ib:37,ielts:6.5,path:true,del:"Full-time",note:"World Top 25. Strong policy and finance pathways."},
+{id:26,uni:"University of Mauritius",pg:"BSc Computer Science",disc:"Computer Science",lev:"UG",dy:3,lang:"English",type:"Home",co:"Mauritius",fl:"🇲🇺",lo:"U",lc:"#003580",lb:"rgba(0,53,128,0.12)",qw:null,qs:null,fee:2200,liv:4000,vis:0,saf:"green",sc:78,ss:85,sh:80,al:"BCC",ib:28,ielts:null,path:true,del:"Full-time",note:"Study at home. Solid regional reputation. Lowest total cost."},
+];
+
+// ARTICULATION DATA
+const ARTS=[
+{id:1,localUni:"University of Nairobi",localCountry:"Kenya",localLoc:"Nairobi, Kenya 🇰🇪",foreignUni:"University of Glasgow",foreignCountry:"United Kingdom",foreignLoc:"Glasgow, UK 🇬🇧",foreignQS:76,disc:"Engineering",progs:["BEng Electrical Engineering","BEng Civil Engineering","BEng Mechanical Engineering"],transferYears:[2,3],award:"both",localFeePerYr:3500,foreignFeePerYr:26000,totalYrs:4,note:"2+2 agreement. Complete 2 years in Nairobi, finish 2 at Glasgow. Both certificates awarded on completion."},
+{id:2,localUni:"University of Ghana",localCountry:"Ghana",localLoc:"Accra, Ghana 🇬🇭",foreignUni:"University of Birmingham",foreignCountry:"United Kingdom",foreignLoc:"Birmingham, UK 🇬🇧",foreignQS:101,disc:"Business",progs:["BSc Business Management","BSc Accounting & Finance"],transferYears:[2],award:"foreign",localFeePerYr:2800,foreignFeePerYr:22000,totalYrs:4,note:"2+2 pathway. 2 years Accra, 2 years Birmingham. Birmingham degree awarded."},
+{id:3,localUni:"Strathmore University",localCountry:"Kenya",localLoc:"Nairobi, Kenya 🇰🇪",foreignUni:"Heriot-Watt University",foreignCountry:"United Kingdom",foreignLoc:"Edinburgh, UK 🇬🇧",foreignQS:350,disc:"Business",progs:["BSc Business Administration","BSc Accountancy"],transferYears:[1,2],award:"both",localFeePerYr:4200,foreignFeePerYr:13500,totalYrs:4,note:"1+3 or 2+2 pathway. Dubai campus option available for final years , further saving possible."},
+{id:4,localUni:"University of Mauritius",localCountry:"Mauritius",localLoc:"Port Louis, Mauritius 🇲🇺",foreignUni:"University of Nottingham",foreignCountry:"United Kingdom",foreignLoc:"Nottingham, UK 🇬🇧",foreignQS:103,disc:"Engineering",progs:["BEng Electronic Engineering","BEng Mechanical Engineering"],transferYears:[1,2],award:"foreign",localFeePerYr:2200,foreignFeePerYr:24000,totalYrs:4,note:"1+3 or 2+2 agreement. Start in Port Louis, complete at Nottingham. Nottingham degree awarded."},
+{id:5,localUni:"University of Lagos",localCountry:"Nigeria",localLoc:"Lagos, Nigeria 🇳🇬",foreignUni:"University of Strathclyde",foreignCountry:"United Kingdom",foreignLoc:"Glasgow, UK 🇬🇧",foreignQS:302,disc:"Engineering",progs:["BEng Chemical Engineering","BEng Mechanical Engineering"],transferYears:[2],award:"foreign",localFeePerYr:1800,foreignFeePerYr:21000,totalYrs:4,note:"2+2 agreement. Strong engineering partnership. Strathclyde degree awarded."},
+{id:6,localUni:"Ashesi University",localCountry:"Ghana",localLoc:"Accra, Ghana 🇬🇭",foreignUni:"Worcester Polytechnic Institute",foreignCountry:"USA",foreignLoc:"Massachusetts, USA 🇺🇸",foreignQS:401,disc:"Computer Science",progs:["BSc Computer Science","BSc Engineering"],transferYears:[2,3],award:"both",localFeePerYr:8500,foreignFeePerYr:32000,totalYrs:4,note:"Flagship US-Ghana dual degree. Both institutions award. Highly competitive entry."},
+{id:7,localUni:"University of Mauritius",localCountry:"Mauritius",localLoc:"Port Louis, Mauritius 🇲🇺",foreignUni:"Curtin University",foreignCountry:"Australia",foreignLoc:"Perth, Australia 🇦🇺",foreignQS:427,disc:"Business",progs:["BCom Business","BCom Marketing","BCom Human Resources"],transferYears:[2],award:"foreign",localFeePerYr:2200,foreignFeePerYr:11000,totalYrs:4,note:"2+2 agreement. Final years can be completed at Curtin Dubai campus , significant additional saving."},
+{id:8,localUni:"University of Cape Town",localCountry:"South Africa",localLoc:"Cape Town, South Africa 🇿🇦",foreignUni:"Sciences Po",foreignCountry:"France",foreignLoc:"Paris, France 🇫🇷",foreignQS:290,disc:"Economics",progs:["BA Economics","BA Political Economy"],transferYears:[3],award:"both",localFeePerYr:5000,foreignFeePerYr:12000,totalYrs:5,note:"3+2 double degree. French proficiency required. Both degrees awarded on completion."},
+{id:9,localUni:"Obafemi Awolowo University",localCountry:"Nigeria",localLoc:"Ile-Ife, Nigeria 🇳🇬",foreignUni:"University of Aberdeen",foreignCountry:"United Kingdom",foreignLoc:"Aberdeen, UK 🇬🇧",foreignQS:251,disc:"Engineering",progs:["BEng Petroleum Engineering","BEng Chemical Engineering"],transferYears:[2],award:"foreign",localFeePerYr:1500,foreignFeePerYr:22000,totalYrs:4,note:"2+2 agreement. Strong energy sector focus. Highly relevant for Nigerian oil & gas careers."},
+{id:10,localUni:"Makerere University",localCountry:"Uganda",localLoc:"Kampala, Uganda 🇺🇬",foreignUni:"University of Manchester",foreignCountry:"United Kingdom",foreignLoc:"Manchester, UK 🇬🇧",foreignQS:32,disc:"Medicine",progs:["MBChB Medicine","BSc Public Health"],transferYears:[3],award:"foreign",localFeePerYr:2800,foreignFeePerYr:38000,totalYrs:5,note:"3+2 medical pathway. First 3 years clinical training in Kampala, final 2 at Manchester. Manchester MBChB awarded."},
+];
+
+let artDisc="all",artYr="all";
+
+function renderArt(){
+  const list=document.getElementById("art-list");
+  const origin=document.getElementById("art-origin")?document.getElementById("art-origin").value:"";
+  const partner=document.getElementById("art-partner")?document.getElementById("art-partner").value:"";
+  const filtered=ARTS.filter(a=>{
+    if(origin&&a.localCountry!==origin)return false;
+    if(partner&&a.foreignCountry!==partner)return false;
+    return true;
+  });
+  if(!filtered.length){list.innerHTML=`<div class="empty"><div class="emicon">🔍</div><div class="emtitle">No agreements match</div><p>Try a different filter.</p></div>`;return;}
+  list.innerHTML=filtered.map(a=>{
+    const localTotal=a.localFeePerYr*a.transferYears[0];
+    const foreignYrs=a.totalYrs-a.transferYears[0];
+    const foreignTotal=a.foreignFeePerYr*foreignYrs;
+    const grandTotal=localTotal+foreignTotal;
+    const straightThrough=a.foreignFeePerYr*a.totalYrs;
+    const saving=straightThrough-grandTotal;
+    const awardLabel=a.award==="both"?`<span class="art-award-pill award-both">🎓🎓 Both universities award</span>`:`<span class="art-award-pill award-foreign">🎓 ${a.foreignUni.split(" ").slice(0,2).join(" ")} degree</span>`;
+    const yrTags=a.transferYears.map(y=>`<span class="art-year-tag">Transfer after Yr ${y}</span>`).join(" ");
+    return`<div class="art-card">
+<div class="art-hdr">
+  <div class="art-uni">
+    <div class="art-uni-name">${a.localUni}</div>
+    <div class="art-uni-loc">${a.localLoc}</div>
+    <div class="art-uni-type">Local start · ${a.disc}</div>
+  </div>
+  <div style="text-align:center">
+    <div style="font-size:22px;color:var(--ac)">→</div>
+    <div style="margin:4px 0">${awardLabel}</div>
+    <div class="art-years">${yrTags}</div>
+  </div>
+  <div class="art-uni" style="text-align:right">
+    <div class="art-uni-name">${a.foreignUni}</div>
+    <div class="art-uni-loc">${a.foreignLoc}</div>
+    <div class="art-uni-type">QS #${a.foreignQS} · Global finish</div>
+  </div>
+</div>
+<div class="art-body">
+  <div class="art-cell">
+    <div class="art-cell-label">Programmes</div>
+    ${a.progs.map(p=>`<div class="art-prog">${p}</div>`).join("")}
+  </div>
+  <div class="art-cell">
+    <div class="art-cell-label">Cost breakdown (USD)</div>
+    <div class="art-cost-row">
+      <div class="art-cost-item"><span class="art-cost-l">Local yrs (${a.transferYears[0]}yr)</span><span class="art-cost-v">$${(a.localFeePerYr*a.transferYears[0]).toLocaleString()}</span></div>
+      <div class="art-cost-item"><span class="art-cost-l">Foreign yrs (${foreignYrs}yr)</span><span class="art-cost-v">$${foreignTotal.toLocaleString()}</span></div>
+      <div class="art-cost-total"><span class="art-cost-tl">Total tuition</span><span class="art-cost-tv">$${grandTotal.toLocaleString()}</span></div>
+    </div>
+  </div>
+  <div class="art-cell">
+    <div class="art-cell-label">Saving vs full foreign</div>
+    <div class="art-cell-val" style="color:var(--ac);font-size:18px;font-family:'Syne',sans-serif">$${saving.toLocaleString()}</div>
+    <div class="art-cell-sub">vs ${a.totalYrs} years full tuition at ${a.foreignUni.split(" ").slice(0,2).join(" ")}</div>
+  </div>
+  <div class="art-cell">
+    <div class="art-cell-label">Notes</div>
+    <div style="font-size:11px;color:var(--mt2);line-height:1.5">${a.note}</div>
+  </div>
+</div>
+</div>`;
+  }).join("");
+}
+
+// articulation filters now handled inline via renderArt()
+
+// GRADE LOGIC
+const ALR={"A*":6,A:5,B:4,C:3,D:2,E:1};
+function alS(g){return(g||"").toUpperCase().split("").reduce((s,c)=>s+(ALR[c]||0),0);}
+function alC(st,req){if(!req||!st)return null;const s=alS(st),r=alS(req);return s>=r?"met":s>=r-2?"close":"notmet";}
+function ibC(st,req){if(!req||!st)return null;const s=parseInt(st),r=req;return s>=r?"met":s>=r-3?"close":"notmet";}
+function ieC(st,req){if(!req||!st)return null;const s=parseFloat(st),r=req;return s>=r?"met":s>=r-0.5?"close":"notmet";}
+function ov(p,ql,al,ib,ie){if(!ql)return null;let c=[];if(ql==="al"&&al)c.push(alC(al,p.al));if(ql==="ib"&&ib)c.push(ibC(ib,p.ib));if(ie&&p.ielts)c.push(ieC(ie,p.ielts));if(!c.length)return null;if(c.every(x=>x==="met"))return"met";if(c.some(x=>x==="notmet"))return"notmet";return"close";}
+function fmt(n){return n?(+n).toLocaleString():"0";}
+function tot(p){return p.fee+p.liv+p.vis;}
+function rb(n){if(!n)return null;if(n<=100)return"1-100";if(n<=250)return"101-250";if(n<=500)return"251-500";return"501+";}
+function sb(n){if(!n)return null;if(n<=50)return"1-50";if(n<=100)return"51-100";if(n<=200)return"101-200";return"201+";}
+function sl(s){return s==="green"?"Safe":s==="amber"?"Moderate":"Caution";}
+function ercb(st){if(!st)return`<span class="erc ecna">–</span>`;if(st==="met")return`<span class="erc ecm">✓</span>`;if(st==="close")return`<span class="erc ecc">~</span>`;return`<span class="erc ecn">✕</span>`;}
+
+let CR=[],activeQF=null;
+
+function toggleQF(key){
+  if(activeQF===key){
+    activeQF=null;
+    document.getElementById("qf-"+key).classList.remove("active");
+    document.getElementById("s-country").value="";
+    document.getElementById("s-type").value="";
+  } else {
+    if(activeQF)document.getElementById("qf-"+activeQF).classList.remove("active");
+    activeQF=key;
+    document.getElementById("qf-"+key).classList.add("active");
+    if(key==="tne"){document.getElementById("s-type").value="TNE";document.getElementById("s-country").value="";}
+    else{document.getElementById("s-type").value="";document.getElementById("s-country").value=QF2CO[key]||"";}
+  }
+  doSearch();
+}
+
+function updateCountry(){
+  const r=document.getElementById("s-region").value;
+  const sel=document.getElementById("s-country");
+  sel.innerHTML="<option value=''>All Countries</option>";
+  const list=r&&RC[r]?RC[r]:[...new Set(P.map(x=>x.co))].filter(c=>c!=="Online").sort();
+  list.forEach(c=>{const o=document.createElement("option");o.value=c;o.textContent=c;sel.appendChild(o);});
+}
+
+function setMode(m){
+  document.getElementById("mc-browse").classList.toggle("active",m==="browse");
+  document.getElementById("mc-grades").classList.toggle("active",m==="grades");
+  document.getElementById("gpanel").classList.toggle("vis",m==="grades");
+}
+function updateGF(){
+  const q=document.getElementById("g-qual").value;
+  document.getElementById("g-al-w").style.display=q==="al"?"flex":"none";
+  document.getElementById("g-ib-w").style.display=q==="ib"?"flex":"none";
+}
+
+function doSearch(){
+  const disc=document.getElementById("s-disc").value;
+  const lev=document.getElementById("s-lev").value;
+  const durF="";
+  const lang=document.getElementById("s-lang").value;
+  const reg=document.getElementById("s-region").value;
+  const co=document.getElementById("s-country").value;
+  const type=document.getElementById("s-type").value;
+  const rank=document.getElementById("s-rank").value;
+  const sub=document.getElementById("s-sub").value;
+  const cost=document.getElementById("s-cost").value;
+  const city=document.getElementById("s-home").value;
+  const gm=document.getElementById("mc-grades").classList.contains("active");
+  const ql=gm?document.getElementById("g-qual").value:"";
+  const al=gm?document.getElementById("g-al").value.trim():"";
+  const ib=gm?document.getElementById("g-ib").value.trim():"";
+  const ie=gm?document.getElementById("g-ie").value.trim():"";
+
+  let res=P.filter(p=>{
+    if(disc&&p.disc!==disc)return false;
+    if(lev&&p.lev!==lev)return false;
+    if(durF&&p.dy!==parseInt(durF))return false;
+    if(lang&&p.lang!==lang)return false;
+    if(reg){const pr=CO2REG[p.co]||"";if(pr!==reg)return false;}
+    if(co&&p.co!==co)return false;
+    if(type&&p.type!==type)return false;
+    if(rank){const b=rb(p.qw);if(!b||b!==rank)return false;}
+    if(sub){const b=sb(p.qs);if(!b||b!==sub)return false;}
+    if(cost&&tot(p)>parseInt(cost))return false;
+    return true;
+  }).map(p=>({...p,_e:ov(p,ql,al,ib,ie)}));
+
+  const eo={met:0,close:1,null:2,notmet:3};
+  res.sort((a,b)=>(eo[a._e]??2)-(eo[b._e]??2));
+  CR=res;
+
+  const pts=[];if(disc)pts.push(disc);if(lev)pts.push(lev);
+  document.getElementById("rtitle").textContent=pts.length?pts.join(" · ")+" Programmes":"All Programmes";
+  document.getElementById("rmeta").textContent=`${res.length} programmes · ${res.filter(r=>r.type==="TNE").length} TNE · ${res.filter(r=>r.type==="Online").length} online · flights from ${city}`;
+
+  const ga=ql&&(al||ib);
+  if(ga){
+    const met=res.filter(r=>r._e==="met").length,close=res.filter(r=>r._e==="close").length;
+    document.getElementById("eligbanner").style.display="flex";
+    document.getElementById("etxt").innerHTML=`Based on your grades: <strong>${met} programmes you qualify for</strong>, ${close} near-miss. Ineligible programmes are dimmed.`;
+  } else {document.getElementById("eligbanner").style.display="none";}
+
+  renderC(res,ql,al,ib,ie,city);
+  document.getElementById("rsec").classList.add("vis");
+  setTimeout(()=>document.getElementById("rsec").scrollIntoView({behavior:"smooth",block:"start"}),100);
+}
+
+function sortR(){
+  const s=document.getElementById("ssel").value;
+  let sorted=[...CR];
+  if(s==="ca")sorted.sort((a,b)=>tot(a)-tot(b));
+  else if(s==="cd")sorted.sort((a,b)=>tot(b)-tot(a));
+  else if(s==="rank")sorted.sort((a,b)=>(a.qw||9999)-(b.qw||9999));
+  renderC(sorted);
+}
+
+function renderC(res,ql,al,ib,ie,city){
+  const list=document.getElementById("clist");
+  if(!res.length){list.innerHTML=`<div class="empty"><div class="emicon">🔍</div><div class="emtitle">No programmes match</div><p>Try broadening your filters.</p></div>`;return;}
+  list.innerHTML=res.map(p=>bc(p,ql,al,ib,ie,city||"Port Louis")).join("");
+}
+
+function bc(p,ql,al,ib,ie,city){
+  const t=tot(p);
+  const ac=ql==="al"&&al?alC(al,p.al):null;
+  const ic=ql==="ib"&&ib?ibC(ib,p.ib):null;
+  const ec=ie&&p.ielts?ieC(ie,p.ielts):null;
+  const tb=p.type==="TNE"?`<span class="b bt2">🏛 TNE</span>`:p.type==="Online"?`<span class="b bon">💻 Online</span>`:`<span class="b bh2">🎓 Home</span>`;
+  let eb="";if(p._e==="met")eb=`<span class="b bem">✓ Eligible</span>`;else if(p._e==="close")eb=`<span class="b bec">~ Near miss</span>`;else if(p._e==="notmet")eb=`<span class="b ben2">✕ Below req</span>`;
+  const ft=getFlightTime(city,p.co);
+  const fh=p.type==="Online"?`<div class="noflt">No relocation required</div>`:ft?`<div class="fri"><strong>From ${city}</strong><span>${ft==="Local"?"Local destination":ft+" approx."}</span></div>`:`<div class="noflt">Route data pending</div>`;
+  const safColor=p.saf==="green"?"spg":p.saf==="amber"?"spa":"spr";
+  return`<div class="pc ${p.type==="TNE"?"tne":""} ${p._e==="notmet"?"inel":""}" onclick="od(${p.id})">
+<div class="phdr"><div class="plogo" style="background:${p.lb};color:${p.lc}">${p.lo}</div>
+<div class="pmain"><div class="ptop"><div><div class="puni">${p.uni}</div><div class="pprog">${p.pg}</div></div>
+<div class="pbadges"><span class="b bl2">${p.lev} · ${p.dy}yr</span><span class="b bgo">${p.lang==="French"?"🇫🇷 FR":"🇬🇧 EN"}</span>${tb}${eb}</div></div>
+<div class="ploc"><span>${p.fl}</span>${p.co} · ${p.del}</div></div></div>
+<div class="pbody">
+<div class="cs"><div class="csl">Annual Cost</div><div class="ctot">$${fmt(t)}<span>/yr</span></div><div class="cmur">≈ MUR ${fmt(Math.round(t*MUR))}</div><div class="clines"><div class="cl"><span class="cll">Tuition</span><span class="clv">$${fmt(p.fee)}</span></div><div class="cl"><span class="cll">Living</span><span class="clv">${p.liv?"$"+fmt(p.liv):","}</span></div><div class="cl"><span class="cll">Visa</span><span class="clv">${p.vis?"$"+fmt(p.vis):","}</span></div></div></div>
+<div class="cs"><div class="csl">Safety</div><div class="saf-compact"><div class="saf-pill-sm ${safColor}"><div class="sdot2"></div>${sl(p.saf)}</div><div class="saf-mini"><span class="saf-mini-l">Crime</span><span class="saf-mini-v">${p.sc}/100</span></div><div class="saf-mini"><span class="saf-mini-l">Stability</span><span class="saf-mini-v">${p.ss}/100</span></div><div class="saf-mini"><span class="saf-mini-l">Health</span><span class="saf-mini-v">${p.sh}/100</span></div></div></div>
+<div class="cs"><div class="csl">QS Rankings</div><div class="rnum">${p.qw?"#"+p.qw:"Specialist"}</div><div class="rsub">World Ranking</div><div class="rrows"><div class="rr2"><span class="rrl">Subject</span><span class="rrv">${p.qs?"#"+p.qs:","}</span></div><div class="rr2"><span class="rrl">Field</span><span class="rrv" style="font-size:9px">${p.disc}</span></div></div></div>
+<div class="cs"><div class="csl">Flight from ${city}</div>${fh}</div>
+<div class="cs"><div class="csl">Entry Requirements</div><div class="errows"><div class="errw"><span class="erl">A-Levels</span><span class="erv">${p.al||","}</span>${ercb(ac)}</div><div class="errw"><span class="erl">IB pts</span><span class="erv">${p.ib?p.ib+"pts":","}</span>${ercb(ic)}</div><div class="errw"><span class="erl">IELTS</span><span class="erv">${p.ielts?p.ielts.toFixed(1):"Not req"}</span>${ercb(ec)}</div></div>${p.path?"<div class=\"ptag\">🔗 Pathway available</div>":""}</div>
+</div>
+<div class="pftr"><div class="pfnote">${p.note}</div><div class="pfact"><button class="cbtn cbt-s" data-id="${p.id}" onclick="event.stopPropagation();toggleSave(${p.id},this)">♡ Save</button><button class="cbtn ${p.type==="TNE"?"cbt-t":"cbt-p"}" onclick="event.stopPropagation();od(${p.id})">Details →</button></div></div>
+</div>`;}
+
+function od(id){
+  const p=P.find(x=>x.id===id);if(!p)return;
+  const t=tot(p);
+  const city=document.getElementById("s-home").value||"Port Louis";
+  const ft=getFlightTime(city,p.co);
+  const ftHTML=p.type==="Online"?`<div class="mi mifull"><div class="mil">Flights</div><div class="miv">No relocation required , fully online</div></div>`:ft?`<div class="mi"><div class="mil">From ${city}</div><div class="miv">${ft==="Local"?"Local destination":ft+" approx."}</div></div><div class="mi"><div class="mil">Note</div><div class="miv" style="font-size:11px">Route type only , check Skyscanner for fares</div></div>`:`<div class="mi mifull"><div class="mil">Flights</div><div class="miv">Route data pending</div></div>`;
+  document.getElementById("mbody").innerHTML=`
+<div class="mhdr"><div class="mlogo" style="background:${p.lb};color:${p.lc}">${p.lo}</div><div><div class="mtitle">${p.uni}</div><div class="msub">${p.pg} · ${p.fl} ${p.co} · ${p.lev} · ${p.dy} year${p.dy>1?"s":""}</div></div><button class="mclose" onclick="cm()">✕</button></div>
+<div class="ms"><div class="mst">Programme Details</div><div class="mg">
+<div class="mi"><div class="mil">Discipline</div><div class="miv">${p.disc}</div></div><div class="mi"><div class="mil">Level & Duration</div><div class="miv">${p.lev} · ${p.dy} year${p.dy>1?"s":""}</div></div>
+<div class="mi"><div class="mil">Language</div><div class="miv">${p.lang}</div></div><div class="mi"><div class="mil">Delivery</div><div class="miv">${p.del}</div></div>
+<div class="mi"><div class="mil">Campus Type</div><div class="miv">${p.type}</div></div><div class="mi"><div class="mil">QS World</div><div class="miv" style="color:var(--go)">${p.qw?"#"+p.qw:"Specialist"}</div></div>
+</div></div>
+<div class="ms"><div class="mst">Annual Cost (USD)</div><div class="mg">
+<div class="mi"><div class="mil">Tuition fees</div><div class="miv">$${fmt(p.fee)}</div></div>
+<div class="mi"><div class="mil">Living (est.)</div><div class="miv">${p.liv?"$"+fmt(p.liv):"N/A"}</div></div>
+<div class="mi"><div class="mil">Visa</div><div class="miv">${p.vis?"$"+fmt(p.vis):"N/A"}</div></div>
+<div class="mi"><div class="mil">Flights</div><div class="miv" style="font-size:11px">See below</div></div>
+<div class="mi mifull mihi"><div class="mil">Total Annual Estimate</div><div class="miv">$${fmt(t)} <span style="font-size:11px;color:var(--mt);font-weight:400">≈ MUR ${fmt(Math.round(t*MUR))}</span></div></div>
+</div></div>
+<div class="ms"><div class="mst">Flight from ${city}</div><div class="mg">${ftHTML}</div></div>
+<div class="ms"><div class="mst">Entry Requirements</div><div class="mg">
+<div class="mi"><div class="mil">A-Level requirement</div><div class="miv">${p.al||"Not specified"}</div></div>
+<div class="mi"><div class="mil">IB points minimum</div><div class="miv">${p.ib?p.ib+" points":"Not specified"}</div></div>
+<div class="mi"><div class="mil">IELTS minimum</div><div class="miv">${p.ielts?p.ielts.toFixed(1):"Not required"}</div></div>
+<div class="mi"><div class="mil">Foundation pathway</div><div class="miv">${p.path?"✓ Available":"Not available"}</div></div>
+</div></div>
+<div class="ms"><div class="mst">Safety , ${p.co}</div><div class="mg">
+<div class="mi"><div class="mil">Overall</div><div class="miv"><span class="saf-pill-sm ${p.saf==="green"?"spg":p.saf==="amber"?"spa":"spr"}" style="font-size:10px;padding:2px 8px">${sl(p.saf)}</span></div></div>
+<div class="mi"><div class="mil">Crime safety</div><div class="miv">${p.sc}/100</div></div>
+<div class="mi"><div class="mil">Stability</div><div class="miv">${p.ss}/100</div></div>
+<div class="mi"><div class="mil">Healthcare</div><div class="miv">${p.sh}/100</div></div>
+</div></div>
+<div style="display:flex;gap:8px">
+<button class="sbtn" style="flex:1" onclick="toast2('Application link coming soon');cm()">Apply / Get Info →</button>
+<button class="cbtn cbt-s" style="padding:9px 14px" onclick="toast2('Saved!');cm()">♡ Save</button>
+<button class="cbtn cbt-s" style="padding:9px 14px" onclick="showPage('contact');cm()">Enquire</button>
+</div>`;
+  document.getElementById("dmodal").classList.add("open");
+}
+
+function cm(){document.getElementById("dmodal").classList.remove("open");}
+document.getElementById("dmodal").addEventListener("click",function(e){if(e.target===this)cm();});
+
+// ── ADVANCED FILTERS ──
+function toggleAdv(){
+  const p=document.getElementById("adv-panel");
+  const btn=document.getElementById("adv-toggle");
+  const open=p.style.display==="none";
+  p.style.display=open?"block":"none";
+  btn.style.borderColor=open?"var(--ac)":"var(--bd2)";
+  btn.style.color=open?"var(--ac)":"var(--mt2)";
+}
+function updateAdvCount(){
+  const filters=["s-lang","s-cost","s-type","s-sub","s-region","s-country"];
+  const active=filters.filter(id=>{const el=document.getElementById(id);return el&&el.value;}).length;
+  const el=document.getElementById("adv-active-count");
+  if(el){el.style.display=active?"inline":"none";el.textContent=active+" active";}
+}
+function resetAdv(){
+  ["s-lang","s-cost","s-type","s-sub","s-region","s-country"].forEach(id=>{const el=document.getElementById(id);if(el)el.value="";});
+  updateCountry();updateAdvCount();
+}
+
+// ── COMPARISON TRAY ──
+let savedItems=new Set();
+
+function toggleSave(id,btn){
+  const p=P.find(x=>x.id===id);
+  if(!p)return;
+  if(savedItems.has(id)){
+    savedItems.delete(id);
+    btn.textContent="♡ Save";
+    btn.style.color="";
+    renderCmpTray();
+    if(savedItems.size===0)closeCmpTray();
+    toast2("Removed from comparison.");
+    return;
+  }
+  if(savedItems.size>=4){toast2("You can compare up to 4 programmes. Remove one first.");return;}
+  savedItems.add(id);
+  btn.textContent="♥ Saved";
+  btn.style.color="var(--ac)";
+  renderCmpTray();
+  document.getElementById("cmp-tray").classList.add("open");
+  toast2("Added to comparison. "+savedItems.size+"/4 selected.");
+}
+
+function renderCmpTray(){
+  const items=[...savedItems].map(id=>P.find(x=>x.id===id)).filter(Boolean);
+  document.getElementById("cmp-count").textContent=items.length;
+  if(!items.length){document.getElementById("cmp-tbody").innerHTML="";return;}
+  // find best cost
+  const costs=items.map(p=>tot(p));
+  const minCost=Math.min(...costs);
+  const bestRank=Math.min(...items.map(p=>p.qw||9999));
+  document.getElementById("cmp-tbody").innerHTML=items.map(p=>{
+    const t=tot(p);
+    const isBestCost=t===minCost;
+    const isBestRank=(p.qw||9999)===bestRank;
+    return`<tr>
+      <td><div class="cmp-uni-cell">${p.uni}</div><div class="cmp-uni-prog">${p.pg}</div></td>
+      <td>${p.lev}</td>
+      <td>${p.fl} ${p.co}</td>
+      <td class="${isBestRank?"cmp-best":""}">${p.qw?"#"+p.qw:"Unranked"}</td>
+      <td>${p.qs?"#"+p.qs:","}</td>
+      <td class="${isBestCost?"cmp-best":""}">$${fmt(t)}<div style="font-size:10px;color:var(--mt)">MUR ${fmt(Math.round(t*MUR))}</div></td>
+      <td>${p.al||","}</td>
+      <td>${p.ib?p.ib+" pts":","}</td>
+      <td>${p.dy} yr${p.dy>1?"s":""}</td>
+      <td><button class="cmp-remove" onclick="removeFromCmp(${p.id})">✕</button></td>
+    </tr>`;
+  }).join("");
+}
+
+function removeFromCmp(id){
+  savedItems.delete(id);
+  renderCmpTray();
+  if(savedItems.size===0)closeCmpTray();
+  // reset save button on card
+  document.querySelectorAll(".cbtn").forEach(btn=>{
+    if(btn.dataset.id==id){btn.textContent="♡ Save";btn.style.color="";}
+  });
+}
+
+function clearComparison(){
+  savedItems.clear();
+  renderCmpTray();
+  closeCmpTray();
+  document.querySelectorAll(".cbtn[data-id]").forEach(btn=>{btn.textContent="♡ Save";btn.style.color="";});
+}
+
+function closeCmpTray(){
+  document.getElementById("cmp-tray").classList.remove("open");
+}
+
+function showPage(pg){
+  document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+  document.querySelectorAll(".nl").forEach(l=>l.classList.remove("active"));
+  const pageEl=document.getElementById("page-"+pg);
+  if(pageEl)pageEl.classList.add("active");
+  // highlight correct nav item
+  const nlEl=document.getElementById("nl-"+pg);
+  if(nlEl)nlEl.classList.add("active");
+  // services group , highlight services button
+  if(["guidance","spotlights","services"].includes(pg)){
+    const sv=document.getElementById("nl-services");
+    if(sv)sv.classList.add("active");
+  }
+  // about group , highlight about button
+  if(["data"].includes(pg)){
+    const ab=document.getElementById("nl-about");
+    if(ab)ab.classList.add("active");
+  }
+  window.scrollTo({top:0,behavior:"smooth"});
+  if(pg==="articulation")renderArt();
+}
+
+function subscribeNL(){
+  const el=document.getElementById("nl-email");
+  if(!el||!el.value||!el.value.includes("@")){toast2("Please enter a valid email address.");return;}
+  toast2("✓ You're subscribed! Welcome to The Uniscope Weekly.");
+  el.value="";
+}
+
+function showForm(type){
+  document.querySelectorAll(".contact-card").forEach(c=>c.classList.remove("active-card"));
+  document.querySelectorAll(".contact-form").forEach(f=>f.classList.remove("vis"));
+  document.getElementById("cc-"+type).classList.add("active-card");
+  document.getElementById("form-"+type).classList.add("vis");
+  setTimeout(()=>document.getElementById("form-"+type).scrollIntoView({behavior:"smooth",block:"start"}),50);
+}
+
+function submitForm(){
+  toast2("✓ Thank you , Dr Edwards will be in touch within 2 working days.");
+  document.querySelectorAll(".contact-form").forEach(f=>f.classList.remove("vis"));
+  document.querySelectorAll(".contact-card").forEach(c=>c.classList.remove("active-card"));
+}
+
+function toast2(msg){const t=document.getElementById("toast");t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),3500);}
+
+window.addEventListener("load",()=>{updateCountry();doSearch();});
+</script>
+</body>
+</html>
